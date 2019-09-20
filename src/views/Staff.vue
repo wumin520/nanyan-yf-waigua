@@ -1,0 +1,164 @@
+<template>
+    <div class="staff_">
+        <a-card title="福利人员">
+            <div class="msg_">贵公司参保人员450人，绑定激活398人，参保家属239人。</div>
+            <a-form class="ant-advanced-search-form" :form="form" @submit="handleSearch">
+              <a-row>
+                <a-col :md="8" :span="5">
+                    <a-form-item label="姓名">
+                        <a-input v-decorator="[
+                            'username',
+                            {
+                                rules: []
+                            }
+                        ]"></a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :md="8" :span="5">
+                    <a-form-item label="手机号码">
+                        <a-input v-decorator="[
+                            'phone',
+                            {
+                                rules: []
+                            }
+                        ]"></a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :md="8" :span="5">
+                    <a-form-item label="工号">
+                        <a-input v-decorator="[
+                            'staffId',
+                            {
+                                rules: []
+                            }
+                        ]"></a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :md="8" :span="5">
+                    <a-form-item label="证件号码">
+                        <a-input v-decorator="[
+                            'idCard',
+                            {
+                                rules: []
+                            }
+                        ]"></a-input>
+                    </a-form-item>
+                </a-col>
+                <a-col :md="8" :span="4">
+                    <a-button html-type="submit" type="primary"><a-icon type="search" />搜索</a-button>
+                    <a-button class="marg_l20" type="primary" html-type="submit" ghost><a-icon type="download" />下载</a-button>
+                </a-col>
+              </a-row>
+            </a-form>
+            <a-divider />
+            <div class="options_select_">人员类型：<label class="active_">全部</label><label>员工</label><label>家属</label></div>
+            <div class="options_select_">保障类型：<label class="active_">全部</label><label>保障中</label><label>保障失效</label></div>
+            <a-table class="marg_t20" :columns="columns" :dataSource="data" bordered>
+                <template slot="name" slot-scope="text">
+                    <a href="javascript:;">{{text}}</a>
+                </template>
+                <template slot="title" slot-scope="currentPageData">
+                    <div class="table_title_">共计6条数据</div>
+                </template>
+            </a-table>
+        </a-card>
+    </div>
+</template>
+<style lang="scss" scoped>
+.table_title_ {
+    text-align: right;
+}
+.marg_l20 {
+    margin-left: 20px;
+}
+.marg_t20 {
+    margin-top: 20px;
+}
+.msg_ {
+    font-size:13px;
+    font-family:Source Han Sans CN;
+    font-weight:300;
+    color:rgba(51,51,51,1);
+    line-height:26px;
+    margin-bottom: 22px;
+}
+.ant-advanced-search-form .ant-form-item {
+  display: flex;
+}
+
+.ant-advanced-search-form .ant-form-item-control-wrapper {
+  flex: 1;
+}
+.options_select_ {
+    line-height: 30px;
+    label {
+        margin-left: 21px;
+        font-size:13px;
+        font-family:Source Han Sans CN;
+        font-weight:300;
+        color:rgba(51,51,51,1);
+        line-height:26px;
+        &.active_ {
+            color: #297FFF;
+        }
+    }
+}
+</style>
+<script>
+const columns = [{
+  title: '姓名',
+  dataIndex: 'name',
+  scopedSlots: { customRender: 'name' },
+}, {
+  title: '年龄',
+  className: 'column-money',
+  dataIndex: 'age',
+}, {
+  title: '证件号码',
+  dataIndex: 'idcard',
+}, {
+  title: '手机号码',
+  dataIndex: 'phone',
+}, {
+  title: '人员类型',
+  dataIndex: 'staff_type',
+}, {
+  title: '工号',
+  dataIndex: 'number',
+}, {
+  title: '有效保单',
+  dataIndex: 'oid',
+}];
+
+const data = [];
+for (var i = 0; i < 6; i++) {
+    data.push({
+      key: i.toString(),
+      name: '王富贵',
+      age: '18',
+      idcard: '432524199203146415',
+      phone: '15214334028',
+      staff_type: '员工',
+      number: 'A001',
+      oid: '3'
+    })
+}
+export default {
+    data () {
+        return {
+            form: this.$form.createForm(this),
+            data,
+            columns
+        }
+    },
+    methods: {
+      handleSearch  (e) {
+        e.preventDefault();
+        this.form.validateFields((error, values) => {
+          console.log('error', error);
+          console.log('Received values of form: ', values);
+        });
+      }
+    }
+}
+</script>
