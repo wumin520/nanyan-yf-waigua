@@ -10,10 +10,10 @@
           </div>
           <div class="right_">
             <ul>
-              <li class="active">首页</li>
-              <li>我们的产品</li>
-              <li>理赔服务</li>
-              <li>关于我们</li>
+              <li @click="handleSwitch(0)" :class="currentTabKey == 0 ? 'active' : ''">首页</li>
+              <li @click="handleSwitch(1)" :class="currentTabKey == 1 ? 'active' : ''">我们的产品</li>
+              <li @click="handleSwitch(2)" :class="currentTabKey == 2 ? 'active' : ''">理赔服务</li>
+              <li @click="handleSwitch(3)" :class="currentTabKey == 3 ? 'active' : ''">关于我们</li>
               <li>
                 <router-link to="/login">
                   <button class="btn_ btn_plain_ btn_login_">用户登录</button>
@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    <div class="content_ w1024">
+    <div id="section1" class="content_ w1024">
       <div class="section_ section_1_">
         <div class="bottom_line_ title_">产品简介</div>
         <ul>
@@ -48,7 +48,7 @@
   优化企业福利待遇</div>
           </li>
           <li class="item_">
-            <img class="img_" src="../assets/home/img1.png"/>
+            <img class="img_" src="../assets/home/img2.png"/>
             <div class="item_title_">多重搭配，企业定制</div>
             <div class="desc_">
               多样化产品组合<br/>
@@ -56,7 +56,7 @@
   优化企业福利待遇</div>
           </li>
           <li class="item_">
-            <img class="img_" src="../assets/home/img1.png"/>
+            <img class="img_" src="../assets/home/img3.png"/>
             <div class="item_title_">多重搭配，企业定制</div>
             <div class="desc_">
               多样化产品组合<br/>
@@ -65,13 +65,13 @@
           </li>
         </ul>
       </div>
-      <div class="section_ section_1_">
+      <div id="section2" class="section_ section_1_">
         <div class="bottom_line_ title_">理赔流程</div>
         <div style="height: 300px;">
             <svg width="100%" height="100%" version="1.1"
             xmlns="http://www.w3.org/2000/svg">
 
-            <polyline points="0,252 246,60 497,252 757,60 1024,252"
+            <polyline class="g-rect-fill" points="0,252 246,60 497,252 757,60 1024,252"
             style="fill:white;stroke:#297FFF;stroke-width:2">
               <animate attributeName="points" attributeType="XML" from="1" to="1024" begin="2s" dur="5s" fill="freeze" />
             </polyline>
@@ -106,7 +106,7 @@
             </svg>
         </div>
       </div>
-      <div class="section_ section_3_">
+      <div id="section3" class="section_ section_3_">
         <div class="bottom_line_ title_">公司简介</div>
         <div>
           <div class="img_wrap_">
@@ -166,6 +166,24 @@
 </template>
 <style lang="scss" scoped>
   @import '@/sass/common.scss';
+  .g-rect-fill{
+      fill: none;
+      stroke-width:10;
+      stroke:#ff7700;
+      stroke-linejoin:round;
+      stroke-linecap:round;
+      stroke-dasharray: 0, 1370;
+      stroke-dashoffset: 0;
+      animation: lineMove 2s ease-out infinite;
+  }
+  @keyframes lineMove {
+      0%{
+          stroke-dasharray: 0, 1350;
+      }
+      100%{
+          stroke-dasharray: 1350, 1350;
+      }
+  }
   .w1200 {
     max-width: 1200px;
     margin: 0 auto;
@@ -372,9 +390,20 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
+  data () {
+    return {
+      currentTabKey: 0
+    }
+  },
   name: "home",
   components: {
     HelloWorld
+  },
+  methods: {
+    handleSwitch (index) {
+      this.currentTabKey = index
+      window.location.hash = '#section' + index
+    }
   }
 };
 </script>
