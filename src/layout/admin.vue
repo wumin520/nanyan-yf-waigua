@@ -1,7 +1,11 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger">
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
-      <router-link to="/"><div class="logo" /></router-link>
+      <router-link to="/">
+        <div class="logo">
+          <img src="../assets/logo@2x.png"/>
+        </div>
+      </router-link>
       <!-- <a-menu theme="light" mode="inline" :defaultSelectedKeys="['1']">
         <a-menu-item key="1">
           <a-icon type="user" />
@@ -17,7 +21,7 @@
         </a-menu-item>
       </a-menu> -->
       <a-menu
-        :defaultSelectedKeys="['1']"
+        :defaultSelectedKeys="['3']"
         :defaultOpenKeys="['2']"
         mode="inline"
         theme="light"
@@ -73,11 +77,11 @@ export default {
     return {
       collapsed: false,
       list: [
-        {
-          key: "1",
-          title: "概览",
-          url: '/dashboard/list'
-        },
+        // {
+        //   key: "1",
+        //   title: "概览",
+        //   url: '/dashboard/list'
+        // },
         {
           key: "3",
           title: "福利人员",
@@ -92,34 +96,34 @@ export default {
               title: "保单总览",
               url: '/dashboard/contract'
             },
-            {
-              key: "2.2",
-              title: "保全管理",
-              url: '/dashboard/baoquan'
-            },
-            {
-              key: "2.3",
-              title: "理赔管理",
-              url: '/dashboard'
-            }
+            // {
+            //   key: "2.2",
+            //   title: "保全管理",
+            //   url: '/dashboard/baoquan'
+            // },
+            // {
+            //   key: "2.3",
+            //   title: "理赔管理",
+            //   url: '/dashboard'
+            // }
           ]
         },
-        {
-          key: "4",
-          title: "凭证管理",
-          children: [
-            {
-              key: "4.1",
-              title: "凭证上传",
-              url: '/dashboard/credentialsUpload'
-            },
-            {
-              key: "4.2",
-              title: "凭证查询",
-              url: '/dashboard/credentialsSearch'
-            }
-          ]
-         },
+        // {
+        //   key: "4",
+        //   title: "凭证管理",
+        //   children: [
+        //     {
+        //       key: "4.1",
+        //       title: "凭证上传",
+        //       url: '/dashboard/credentialsUpload'
+        //     },
+        //     {
+        //       key: "4.2",
+        //       title: "凭证查询",
+        //       url: '/dashboard/credentialsSearch'
+        //     }
+        //   ]
+        //  },
         {
           key: "5",
           title: "账号信息",
@@ -173,8 +177,14 @@ export default {
 }
 
 #components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: #eee;
+  height: 35px;
+  // background: #eee;
   margin: 16px;
+  overflow: hidden;
+  img {
+    width: 128px;
+    height: auto;
+    display: block;
+  }
 }
 </style>

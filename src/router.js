@@ -29,9 +29,10 @@ export default new Router({
       // name: "dashboard",
       component: Admin,
       meta: { requiresAuth: true },
+      redirect: { name: "staff" },
       children: [
         {
-          path: "",
+          path: "/index",
           name: "dashboard",
           component: Dashboard,
           meta: {

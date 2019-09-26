@@ -29,8 +29,8 @@
   用心做企业信任、员工满意的企业员工保险平台
                           </div>
           <div class="btn_wrap_">
-            <button class="btn_ btn_default_">预约投保</button>
-            <button class="btn_ btn_plain_ mrgl_18">定制方案</button>
+            <router-link style="margin-left: " to="/submitCustomPlan"><button class="btn_ btn_default_">预约投保</button></router-link>
+            <!-- <button class="btn_ btn_plain_ mrgl_18">定制方案</button> -->
           </div>
         </div>
       </div>
@@ -166,6 +166,12 @@
 </template>
 <style lang="scss" scoped>
   @import '@/sass/common.scss';
+  .btn_wrap_ {
+    text-align: center;
+    a:focus, button:focus, button:active{
+      outline: none;
+    }
+  } 
   .g-rect-fill{
       fill: none;
       stroke-width:10;
@@ -398,6 +404,11 @@ export default {
   name: "home",
   components: {
     HelloWorld
+  },
+  mounted () {
+    if (location.hash.indexOf('section') > -1) {
+      window.location.hash = location.hash.substr(0, 9)
+    }
   },
   methods: {
     handleSwitch (index) {

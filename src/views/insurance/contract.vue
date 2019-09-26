@@ -17,8 +17,8 @@
           <template slot="operation" slot-scope="text, record, index">
             <div class='editable-row-operations'>
               <span>
-                <!-- <a-radio></a-radio> -->
-                <a @click="() => edit(record.key)">Edit</a>
+                <a-radio value="1"></a-radio>
+                <!-- <a @click="() => edit(record.key)">Edit</a> -->
               </span>
             </div>
           </template>

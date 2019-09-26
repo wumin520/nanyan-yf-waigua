@@ -25,16 +25,6 @@
                     </a-form-item>
                 </a-col>
                 <a-col :md="8" :span="5">
-                    <a-form-item label="工号">
-                        <a-input v-decorator="[
-                            'staffId',
-                            {
-                                rules: []
-                            }
-                        ]"></a-input>
-                    </a-form-item>
-                </a-col>
-                <a-col :md="8" :span="5">
                     <a-form-item label="证件号码">
                         <a-input v-decorator="[
                             'idCard',
@@ -44,9 +34,19 @@
                         ]"></a-input>
                     </a-form-item>
                 </a-col>
+                <a-col :md="8" :span="5">
+                    <a-form-item label="工号">
+                        <a-input v-decorator="[
+                            'staffId',
+                            {
+                                rules: []
+                            }
+                        ]"></a-input>
+                    </a-form-item>
+                </a-col>
                 <a-col :md="8" :span="4">
                     <a-button html-type="submit" type="primary"><a-icon type="search" />搜索</a-button>
-                    <a-button class="marg_l20" type="primary" html-type="submit" ghost><a-icon type="download" />下载</a-button>
+                    <!-- <a-button class="marg_l20" type="primary" html-type="submit" ghost><a-icon type="download" />下载</a-button> -->
                 </a-col>
               </a-row>
             </a-form>

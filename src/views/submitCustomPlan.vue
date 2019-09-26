@@ -7,10 +7,10 @@
               </div>
               <div class="right_">
                 <ul>
-                  <li class="">首页</li>
-                  <li>我们的产品</li>
-                  <li>理赔服务</li>
-                  <li>关于我们</li>
+                  <li class=""><router-link to="/">首页</router-link></li>
+                  <li><router-link to="/#section1_">我们的产品</router-link></li>
+                  <li><router-link to="/#section2_">理赔服务</router-link></li>
+                  <li><router-link to="/#section3_">关于我们</router-link></li>
                   <li>
                     <router-link to="/login">
                       <a-button type="primary" ghost>用户登录</a-button>

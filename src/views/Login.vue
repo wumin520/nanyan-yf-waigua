@@ -26,16 +26,16 @@
       <a-col :span="12">
         <div class="login_container_">
           <a-row class="">
-            <a-col :span="12">
-              <div class="login_title_ active_">
+            <a-col :span="24">
+              <div class="login_title_">
                 企业登录
               </div>
             </a-col>
-            <a-col :span="12">
+            <!-- <a-col :span="12">
               <div class="login_title_">
                 个人登录
               </div>
-            </a-col>
+            </a-col> -->
           </a-row>
           <a-form
             id="components-form-demo-normal-login"
