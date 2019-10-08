@@ -3,8 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
+import { isLogined } from '@/utils/authorized';
 
 import Antd from "ant-design-vue";
+import { notification, message } from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import moment from "moment";
 import "moment/locale/zh-cn";
@@ -13,10 +15,12 @@ Vue.config.productionTip = false;
 
 Vue.use(Antd);
 moment.locale("zh-cn");
+window.notification = notification;
+window.message = message;
 
 const auth = {
   loggedIn: () => {
-    return true;
+    return isLogined();
   }
 };
 

@@ -3,7 +3,7 @@
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <router-link to="/">
         <div class="logo">
-          <img src="../assets/logo@2x.png"/>
+          <img src="../assets/logo@2x.png" />
         </div>
       </router-link>
       <!-- <a-menu theme="light" mode="inline" :defaultSelectedKeys="['1']">
@@ -39,20 +39,32 @@
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header style="background: #fff; padding: 0; position: relative;">
         <a-icon
           class="trigger"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="() => (collapsed = !collapsed)"
         />
+        <a-popover placement="bottom">
+          <template slot="content">
+            <a href="javascript:;">退出登录</a>
+          </template>
+          <template slot="title">
+            <div style="text-align: center;">me</div>
+          </template>
+          <a-avatar style="backgroundColor:#297FFF; margin-left: auto;position: absolute; right: 72px;top: 13px;" icon="user" />
+        </a-popover>
       </a-layout-header>
       <a-breadcrumb style="margin: 16px;" :routes="routes">
-        <template slot="itemRender" slot-scope="{route, params, routes, paths}">
+        <template
+          slot="itemRender"
+          slot-scope="{ route, params, routes, paths }"
+        >
           <span v-if="routes.indexOf(route) === routes.length - 1">
-            {{route.breadcrumbName}}
+            {{ route.breadcrumbName }}
           </span>
           <router-link v-else :to="paths.join('/')">
-            {{route.breadcrumbName}}
+            {{ route.breadcrumbName }}
           </router-link>
         </template>
       </a-breadcrumb>
@@ -85,7 +97,7 @@ export default {
         {
           key: "3",
           title: "福利人员",
-          url: '/dashboard/staff'
+          url: "/dashboard/staff"
         },
         {
           key: "2",
@@ -94,8 +106,8 @@ export default {
             {
               key: "2.1",
               title: "保单总览",
-              url: '/dashboard/contract'
-            },
+              url: "/dashboard/contract"
+            }
             // {
             //   key: "2.2",
             //   title: "保全管理",
@@ -127,33 +139,42 @@ export default {
         {
           key: "5",
           title: "账号信息",
-          url: '/dashboard/accountInfo'
-        },
+          url: "/dashboard/accountInfo"
+        }
       ],
-      routes: [],
+      routes: []
     };
   },
   watch: {
-    '$route': function () {
-      console.log('route change -> ', this.$route)
+    $route: function() {
+      console.log("route change -> ", this.$route);
       const arr = this.$route.matched.map((item, index) => {
         return {
           path: item.path,
-          breadcrumbName: item.meta.breadcrumbName || '首页'
-        }
-      })
-      this.routes = arr
+          breadcrumbName: item.meta.breadcrumbName || "首页"
+        };
+      });
+      this.routes = arr;
     }
   },
   components: {
     "sub-menu": SubMenu
   },
-  mounted () {
-    console.log(this.$router, this.$route, this)
+  mounted() {
+    console.log(this.$router, this.$route, this);
   }
 };
 </script>
 <style lang="scss">
+.ant-popover-placement-bottom {
+  .ant-popover-title {
+    min-width: 150px;
+  }
+  .ant-popover-inner-content {
+    padding: 8px 0;
+    text-align: center;
+  }
+}
 #components-layout-demo-custom-trigger {
   height: 100%;
   .ant-layout-sider {

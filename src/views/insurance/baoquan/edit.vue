@@ -1,3 +1,3 @@
 <template>
-    <div>编辑被保险人</div>
+  <div>编辑被保险人</div>
 </template>

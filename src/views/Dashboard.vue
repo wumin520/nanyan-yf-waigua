@@ -11,10 +11,19 @@
         </div>
         <div class="right_">
           <div class="input_wrap_">
-              <a-input v-model="searchText" placeholder="请输入查找内容" ref="searchTextInput">
-                <a-icon slot="prefix" type="search" />
-                <a-icon v-if="searchText" slot="suffix" type="close-circle" @click="emitEmpty" />
-              </a-input>
+            <a-input
+              v-model="searchText"
+              placeholder="请输入查找内容"
+              ref="searchTextInput"
+            >
+              <a-icon slot="prefix" type="search" />
+              <a-icon
+                v-if="searchText"
+                slot="suffix"
+                type="close-circle"
+                @click="emitEmpty"
+              />
+            </a-input>
           </div>
           <div class="btn_wrap_">
             <a-button type="primary" ghost>重置</a-button>
@@ -44,7 +53,6 @@
       <a-button class="marg-r22" type="primary">编辑被保人</a-button>
       <a-button type="primary">理赔查询</a-button>
     </a-card>
-
   </div>
 </template>
 <style lang="scss" scoped>
@@ -55,7 +63,8 @@
   .ant-card {
     margin-top: 20px;
   }
-  ul, li {
+  ul,
+  li {
     list-style: none;
     padding: 0;
   }
@@ -66,14 +75,14 @@
     margin-top: 0;
     .header_ {
       line-height: 55px;
-      border-bottom:1px solid rgba(28,40,61,0.1);
+      border-bottom: 1px solid rgba(28, 40, 61, 0.1);
       margin-top: -24px;
       .left_ {
         float: left;
         label {
           margin-right: 18px;
           &.active_ {
-            border-bottom: 2px solid #297FFF;
+            border-bottom: 2px solid #297fff;
           }
         }
       }
@@ -98,24 +107,24 @@
     .footer_ {
       margin-top: 30px;
       padding-top: 13px;
-      border-top: 1px solid rgba(28,40,61,0.1);
+      border-top: 1px solid rgba(28, 40, 61, 0.1);
     }
   }
 }
 </style>
 <script>
 export default {
-  data () {
+  data() {
     return {
-      current: ['2018'],
-      searchText: ''
-    }
+      current: ["2018"],
+      searchText: ""
+    };
   },
   methods: {
-    emitEmpty () {
-      this.$refs.searchTextInput.focus()
-      this.searchText = ''
-    },
+    emitEmpty() {
+      this.$refs.searchTextInput.focus();
+      this.searchText = "";
+    }
   }
-}
+};
 </script>

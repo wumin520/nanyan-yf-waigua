@@ -8,10 +8,10 @@ import Staff from "./views/Staff.vue";
 import InsuranceContract from "./views/insurance/contract";
 import planInformation from "./views/insurance/planInformation";
 import Baoquan from "./views/insurance/baoquan/index";
-import credentialsUpload from './views/credentials/upload';
-import credentialsSearch from './views/credentials/search';
-import accountInfo from './views/accountInfo';
-import baoquanAdd from './views/insurance/baoquan/add';
+import credentialsUpload from "./views/credentials/upload";
+import credentialsSearch from "./views/credentials/search";
+import accountInfo from "./views/accountInfo";
+import baoquanAdd from "./views/insurance/baoquan/add";
 
 Vue.use(Router);
 
@@ -122,7 +122,9 @@ export default new Router({
       path: "/submitCustomPlan",
       name: "submit-custom-plan",
       component: () =>
-        import(/* webpackChunkName: "submit-custom-plan" */ "./views/submitCustomPlan.vue")
+        import(
+          /* webpackChunkName: "submit-custom-plan" */ "./views/submitCustomPlan.vue"
+        )
     },
     {
       path: "/about",

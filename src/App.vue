@@ -9,6 +9,14 @@
 </template>
 
 <style lang="scss">
+body {
+  .ant-card {
+    font-family: "PingFang SC-Regular", "Hiragino Sans GB", "Microsoft YaHei",
+      "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Chinese Quote", -apple-system,
+      BlinkMacSystemFont, "Segoe UI";
+  }
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
