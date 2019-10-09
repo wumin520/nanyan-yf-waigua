@@ -17,6 +17,7 @@ Vue.use(Antd);
 moment.locale("zh-cn");
 window.notification = notification;
 window.message = message;
+window.router = router;
 
 const auth = {
   loggedIn: () => {

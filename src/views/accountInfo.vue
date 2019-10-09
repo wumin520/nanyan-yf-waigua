@@ -109,11 +109,7 @@ export default {
     };
   },
   mounted () {
-    let userInfo = getUserInfo() || {
-      companyName: 'w',
-      userName: 'ADMIN',
-      userPassword: 'OVFAY09VPzZXOz8rVj9CWD1nP0lQZz09'
-    };
+    let userInfo = getUserInfo();
     this.formInfo = userInfo
     console.log(userInfo, '1')
   },

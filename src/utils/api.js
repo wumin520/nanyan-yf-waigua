@@ -2,7 +2,7 @@ import axios from "axios";
 import qs from "qs";
 
 var instance = axios.create({
-  baseURL: "/api/",
+  baseURL: "/api",
   timeout: 3000,
   headers: { "X-Custom-Header": "foobar" }
 });
@@ -85,7 +85,11 @@ instance.interceptors.response.use(
     console.log("response -> ", response);
     const { returnCode, returnMsg } = response.data;
     if (returnCode !== "0000") {
-      window.message.error(returnMsg);
+      if (returnCode == '1012') {
+        window.router.push('/login');
+      } else {
+        window.message.error(returnMsg);
+      }
       return Promise.reject(response);
     }
     return response;
@@ -107,7 +111,7 @@ instance.interceptors.response.use(
 
 let api = {};
 api.userLogin = function(data) {
-  return instance.post("backstage/user/login/authority", qs.stringify(data));
+  return instance.post("/backstage/user/login/authority", qs.stringify(data));
 };
 // 退出登录
 api.exitLogin = function(data) {

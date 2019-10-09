@@ -228,7 +228,7 @@
               03
             </text>
             <image
-              xlink:href="/img/img4.1841da17.png"
+              xlink:href="../assets/home/qrcode.jpeg"
               x="200"
               y="220"
               height="79"
@@ -286,7 +286,7 @@
           <a-col :span="12">
             <div class="right_">
               <div class="qrcode_wrap_">
-                <img src="" />
+                <img src="../assets/home/qrcode.jpeg" />
                 南燕公众号
               </div>
             </div>
@@ -509,8 +509,11 @@ img {
     .right_ {
       .qrcode_wrap_ {
         margin-left: 375px;
+        color: #fff;
+        text-align: center;
         img {
           display: block;
+          margin: 0 auto;
           width: 100px;
           height: 100px;
         }

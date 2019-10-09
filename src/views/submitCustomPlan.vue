@@ -26,7 +26,7 @@
         <a-form-item v-bind="formItemLayout" label="企业名称" has-feedback>
           <a-input
             v-decorator="[
-              'company_name',
+              'companyName',
               {
                 rules: [
                   {
@@ -42,7 +42,7 @@
         <a-form-item v-bind="formItemLayout" label="联系人" has-feedback>
           <a-input
             v-decorator="[
-              'contact',
+              'likeMan',
               {
                 rules: [
                   {
@@ -64,10 +64,10 @@
               }
             ]"
           >
-            <a-radio value="1">
+            <a-radio value="M">
               先生
             </a-radio>
-            <a-radio value="0">
+            <a-radio value="F">
               女士
             </a-radio>
           </a-radio-group>
@@ -91,7 +91,7 @@
         <a-form-item v-bind="formItemLayout" label="所属行业" has-feedback>
           <a-input
             v-decorator="[
-              'factory',
+              'business',
               {
                 rules: [
                   {
@@ -105,21 +105,20 @@
           ></a-input>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="公司规模">
-          <a-select
+          <a-input
             v-decorator="[
-              'company_size',
+              'companyScale',
               {
                 rules: [
                   {
                     required: true,
-                    message: '请选择公司规模'
+                    message: '请输入规模'
                   }
                 ]
               }
             ]"
           >
-            <a-select-option key="" value="100">100人</a-select-option>
-          </a-select>
+          </a-input>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="公司邮箱">
           <a-input
@@ -137,11 +136,11 @@
           ></a-input>
         </a-form-item>
         <a-form-item v-bind="formItemLayout" label="合作/投保需求">
-          <a-textarea class="desc_" v-decorator="['descriptor']"> </a-textarea>
+          <a-textarea class="desc_" v-decorator="['cooperation']"> </a-textarea>
         </a-form-item>
         <a-form-item>
           <div class="btn_wrap_">
-            <a-button class="mrg_l29 w120" type="primary">登录</a-button>
+            <a-button html-type="submit" class="mrg_l29 w120" type="primary">确定</a-button>
             <a-button @click="handleReset" class="w120" type="primary" ghost
               >重置</a-button
             >
@@ -213,6 +212,8 @@
 }
 </style>
 <script>
+import api from '@/utils/api';
+
 const formItemLayout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 18 }
@@ -232,8 +233,15 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
+          this.postData(values)
         }
       });
+    },
+    postData (params) {
+      api.appointment(params).then(res => res.data).then(data => {
+        this.$message.info('添加成功')
+        this.handleReset()
+      })
     },
     handleReset() {
       this.form.resetFields();
