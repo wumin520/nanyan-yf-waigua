@@ -2,12 +2,9 @@ module.exports = {
   devServer: {
     proxy: {
       "^/api": {
-        target: "http://dfa34h.natappfree.cc/",
+        target: "http://front.run4wd.com/",
         ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '/', // rewrite path
-        }
+        changeOrigin: true
       },
       "^/foo": {
         target: "<other_url>"
