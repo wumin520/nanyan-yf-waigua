@@ -16,6 +16,7 @@
           <div v-else>
             <a-row>
               <a-col :span="4">{{formInfo.userName}} </a-col>
+<<<<<<< HEAD
               <a-col style="text-align: right;" :span="12">
                 <a @click="changeToEdit('editable')" href="javascript:;">修改</a>
               </a-col>
@@ -27,15 +28,34 @@
             'userPassword',
             {
               initialValue: formInfo.userPassword,
+=======
+              <!-- <a-col style="text-align: right;" :span="12">
+                <a @click="changeToEdit('editable')" href="javascript:;">修改</a>
+              </a-col> -->
+            </a-row>
+          </div>
+        </a-form-item>
+        <a-form-item v-bind="formItemLayout" label="修改密码">
+          <a-input v-if="pEditable" v-decorator="[
+            'userPassword',
+            {
+>>>>>>> update
               ...inputRequired
             }
           ]" placeholder="请输入密码"></a-input>
           <div v-else>
             <a-row>
+<<<<<<< HEAD
               <a-col :span="4">
                 {{formInfo.userPassword}} 
               </a-col>
               <a-col style="text-align: right;" :span="12">
+=======
+              <!-- <a-col :span="4">
+                {{formInfo.userPassword}} 
+              </a-col> -->
+              <a-col style="text-align: right;" :span="2">
+>>>>>>> update
                 <a @click="changeToEdit('pEditable')" href="javascript:;">修改</a>
               </a-col>
             </a-row>
@@ -121,9 +141,16 @@ export default {
   methods: {
     updateUser (options) {
       api.updateUser({
+<<<<<<< HEAD
         ...options
       }).then(res => res.data).then(data => {
         window.message('修改成功')
+=======
+        ...options,
+        id: this.formInfo.id
+      }).then(res => res.data).then(data => {
+        this.$message.info('修改成功')
+>>>>>>> update
         this.closeEdit()
       })
     },
@@ -132,7 +159,15 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('hanleSubmit -> ', values)
+<<<<<<< HEAD
           this.updateUser(values)
+=======
+          // this.formInfo.userName = values.userName || this.formInfo.userName
+          // this.formInfo.userPassword = values.userPassword || this.formInfo.userPassword
+
+          this.updateUser(values)
+
+>>>>>>> update
         }
       })
     },

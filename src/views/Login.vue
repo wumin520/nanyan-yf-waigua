@@ -88,13 +88,20 @@
                       rules: [{ required: true, message: '请输入验证码' }]
                     }
                   ]"
+<<<<<<< HEAD
                   type="password"
+=======
+>>>>>>> update
                   placeholder="请输入验证码"
                   size="large"
                 >
                   <!-- <a-icon slot="suffix" type="lock" style="color: rgba(0,0,0,.25)" /> -->
                 </a-input>
+<<<<<<< HEAD
                 <img class="veri_code_" src="/api/backstage/user/getVerificationCode" />
+=======
+                <img class="veri_code_" :src="url" @click="changeImgCode" />
+>>>>>>> update
               </a-form-item>
               <a-form-item>
                 <a-button
@@ -131,12 +138,27 @@ import api from '@/utils/api';
 import { setLogined, cacheUserInfo, promptMsgAndJump } from '@/utils/authorized';
 
 export default {
+<<<<<<< HEAD
+=======
+  data () {
+    return {
+      url: "/api/backstage/user/getVerificationCode/authority"
+    }
+  },
+>>>>>>> update
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
   mounted () {
   },
   methods: {
+<<<<<<< HEAD
+=======
+    changeImgCode () {
+      var num=Math.ceil(Math.random()*10);
+      this.url = "/api/backstage/user/getVerificationCode/authority?" + num;
+    },
+>>>>>>> update
     promptMsgAndJump,
     login (params) {
       api.userLogin(params).then(res => res.data).then(data => {

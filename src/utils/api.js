@@ -107,7 +107,15 @@ instance.interceptors.response.use(
 
 let api = {};
 api.userLogin = function(data) {
+<<<<<<< HEAD
   return instance.post("/backstage/user/login", data);
+=======
+  return instance.post("backstage/user/login/authority", qs.stringify(data));
+};
+// 退出登录
+api.exitLogin = function(data) {
+  return instance.post("/backstage/user/exit", data);
+>>>>>>> update
 };
 // 福利人员列表
 api.getInsurceList = function(data) {
@@ -126,11 +134,19 @@ api.appointment = function(data) {
 };
 // 保单列表 params = [isInUnder -> [Y/N]]
 api.policyList = function(data) {
+<<<<<<< HEAD
   return instance.post(`/plug/policyList?${qs.stringify(data)}`);
 };
 
 api.updateUser = function(data) {
   return instance.post("/backstage/user/updateUser", data);
+=======
+  return instance.post(`/plug/policyList`, data);
+};
+
+api.updateUser = function(data) {
+  return instance.post("/backstage/user/updateUser", qs.stringify(data));
+>>>>>>> update
 };
 
 api.cdkMonthProfit = function() {
