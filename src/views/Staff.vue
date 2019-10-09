@@ -1,9 +1,9 @@
 <template>
   <div class="staff_">
     <a-card title="福利人员">
-      <div class="msg_">
+      <!-- <div class="msg_">
         贵公司参保人员450人，绑定激活398人，参保家属239人。
-      </div>
+      </div> -->
       <a-form
         class="ant-advanced-search-form"
         :form="form"
@@ -67,14 +67,30 @@
         </a-row>
       </a-form>
       <a-divider />
-      <div class="options_select_">
+      <div>
+        人员类型：
+        <a-radio-group @change="handleRYChange" defaultValue="">
+          <a-radio-button value="">全部</a-radio-button>
+          <a-radio-button value="Y">员工</a-radio-button>
+          <a-radio-button value="N">家属</a-radio-button>
+        </a-radio-group>
+      </div>
+      <div style="margin-top: 24px;">
+        保障类型：
+        <a-radio-group @change="handleBZZChange" defaultValue="">
+          <a-radio-button value="">全部</a-radio-button>
+          <a-radio-button value="Y">保障中</a-radio-button>
+          <a-radio-button value="N">保障失效</a-radio-button>
+        </a-radio-group>
+      </div>
+      <!-- <div class="options_select_">
         人员类型：<label class="active_">全部</label><label>员工</label
         ><label>家属</label>
       </div>
       <div class="options_select_">
         保障类型：<label class="active_">全部</label><label>保障中</label
         ><label>保障失效</label>
-      </div>
+      </div> -->
       <a-table class="marg_t20" @change="handleChange" :pagination="pagination" :columns="columns" :dataSource="data" bordered>
         <template slot="name" slot-scope="text">
           <div>{{ text }}</div>
@@ -91,7 +107,7 @@
   margin-left: 20px;
 }
 .marg_t20 {
-  margin-top: 20px;
+  margin-top: 32px;
 }
 .msg_ {
   font-size: 13px;
@@ -163,18 +179,18 @@ const columns = [
 ];
 
 const data = [];
-for (var i = 0; i < 6; i++) {
-  data.push({
-    key: i.toString(),
-    name: "王富贵",
-    age: "18",
-    idNo: "432524199203146415",
-    phone: "15214334028",
-    isMain: "员工",
-    empNo: "A001",
-    policyCount: "3"
-  });
-}
+// for (var i = 0; i < 6; i++) {
+//   data.push({
+//     key: i.toString(),
+//     name: "王富贵",
+//     age: "18",
+//     idNo: "432524199203146415",
+//     phone: "15214334028",
+//     isMain: "员工",
+//     empNo: "A001",
+//     policyCount: "3"
+//   });
+// }
 export default {
   data() {
     return {
@@ -191,6 +207,15 @@ export default {
     this.fetchList(1)
   },
   methods: {
+    handleBZZChange (e) {
+      this.insurceType = e.target.value
+      console.log('e -> handleRYChange', e)
+      this.fetchList(1)
+    },
+    handleRYChange (e) {
+      this.planType = e.target.value
+      this.fetchList(1)
+    },
     handleChange (pagination) {
       this.fetchList(pagination.current)
     },
@@ -200,6 +225,12 @@ export default {
         if (this.formData[key]) {
             formData[key] = this.formData[key]
         }
+      }
+      if (this.planType) {
+        formData['planType'] = this.planType
+      }
+      if (this.insurceType) {
+        formData['insurceType'] = this.insurceType
       }
       api
       .getInsurceList({
@@ -213,7 +244,7 @@ export default {
           // this.fetchDetail();
           const {list, total} = data.content
           this.data = list
-        //   this.pagination.total = total
+          this.pagination.total = total
       });
     },
     fetchDetail(policyId) {
