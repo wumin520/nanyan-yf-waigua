@@ -1,15 +1,9 @@
 <template>
   <div class="staff_">
     <a-card title="福利人员">
-<<<<<<< HEAD
       <!-- <div class="msg_">
         贵公司参保人员450人，绑定激活398人，参保家属239人。
       </div> -->
-=======
-      <div class="msg_">
-        贵公司参保人员450人，绑定激活398人，参保家属239人。
-      </div>
->>>>>>> update
       <a-form
         class="ant-advanced-search-form"
         :form="form"
@@ -73,7 +67,6 @@
         </a-row>
       </a-form>
       <a-divider />
-<<<<<<< HEAD
       <div>
         人员类型：
         <a-radio-group @change="handleRYChange" defaultValue="">
@@ -91,20 +84,13 @@
         </a-radio-group>
       </div>
       <!-- <div class="options_select_">
-=======
-      <div class="options_select_">
->>>>>>> update
         人员类型：<label class="active_">全部</label><label>员工</label
         ><label>家属</label>
       </div>
       <div class="options_select_">
         保障类型：<label class="active_">全部</label><label>保障中</label
         ><label>保障失效</label>
-<<<<<<< HEAD
       </div> -->
-=======
-      </div>
->>>>>>> update
       <a-table class="marg_t20" @change="handleChange" :pagination="pagination" :columns="columns" :dataSource="data" bordered>
         <template slot="name" slot-scope="text">
           <div>{{ text }}</div>
@@ -121,11 +107,7 @@
   margin-left: 20px;
 }
 .marg_t20 {
-<<<<<<< HEAD
   margin-top: 32px;
-=======
-  margin-top: 20px;
->>>>>>> update
 }
 .msg_ {
   font-size: 13px;
@@ -197,7 +179,6 @@ const columns = [
 ];
 
 const data = [];
-<<<<<<< HEAD
 // for (var i = 0; i < 6; i++) {
 //   data.push({
 //     key: i.toString(),
@@ -210,20 +191,6 @@ const data = [];
 //     policyCount: "3"
 //   });
 // }
-=======
-for (var i = 0; i < 6; i++) {
-  data.push({
-    key: i.toString(),
-    name: "王富贵",
-    age: "18",
-    idNo: "432524199203146415",
-    phone: "15214334028",
-    isMain: "员工",
-    empNo: "A001",
-    policyCount: "3"
-  });
-}
->>>>>>> update
 export default {
   data() {
     return {
@@ -240,7 +207,6 @@ export default {
     this.fetchList(1)
   },
   methods: {
-<<<<<<< HEAD
     handleBZZChange (e) {
       this.insurceType = e.target.value
       console.log('e -> handleRYChange', e)
@@ -250,8 +216,6 @@ export default {
       this.planType = e.target.value
       this.fetchList(1)
     },
-=======
->>>>>>> update
     handleChange (pagination) {
       this.fetchList(pagination.current)
     },
@@ -262,15 +226,12 @@ export default {
             formData[key] = this.formData[key]
         }
       }
-<<<<<<< HEAD
       if (this.planType) {
         formData['planType'] = this.planType
       }
       if (this.insurceType) {
         formData['insurceType'] = this.insurceType
       }
-=======
->>>>>>> update
       api
       .getInsurceList({
           pageNum,
@@ -283,11 +244,7 @@ export default {
           // this.fetchDetail();
           const {list, total} = data.content
           this.data = list
-<<<<<<< HEAD
           this.pagination.total = total
-=======
-        //   this.pagination.total = total
->>>>>>> update
       });
     },
     fetchDetail(policyId) {

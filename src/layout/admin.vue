@@ -47,11 +47,7 @@
         />
         <a-popover placement="bottom">
           <template slot="content">
-<<<<<<< HEAD
-            <a href="javascript:;">退出登录</a>
-=======
             <a href="javascript:;"  @click="exit">退出登录</a>
->>>>>>> update
           </template>
           <template slot="title">
             <div style="text-align: center;">me</div>
@@ -87,11 +83,7 @@
 </template>
 <script>
 import SubMenu from "./SubMenu";
-<<<<<<< HEAD
-
-=======
 import api from '@/utils/api';
->>>>>>> update
 export default {
   data() {
     return {
@@ -170,8 +162,6 @@ export default {
   },
   mounted() {
     console.log(this.$router, this.$route, this);
-<<<<<<< HEAD
-=======
   },
   methods: {
     exit () {
@@ -179,7 +169,6 @@ export default {
         this.$router.push({name:"login"});
       })
     }
->>>>>>> update
   }
 };
 </script>

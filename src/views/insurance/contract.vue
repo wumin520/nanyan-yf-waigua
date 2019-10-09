@@ -9,11 +9,7 @@
           <a-radio-button value="N">已过期</a-radio-button>
         </a-radio-group>
       </div>
-<<<<<<< HEAD
       <a-table @change="handleTableChange" :pagination="pagination" :columns="columns" :dataSource="data" bordered>
-=======
-      <a-table :columns="columns" :dataSource="data" bordered>
->>>>>>> update
         <!-- <template v-for="col in ['name', 'age', 'address']" :slot="col" slot-scope="text, record, index">
             <div :key="col">
               <a-input
@@ -25,7 +21,7 @@
               <template v-else>{{text}}</template>
             </div>
           </template> -->
-        <template slot="operation" slot-scope="text, record, index">
+        <template slot="operation" slot-scope="text, record">
           <div class="editable-row-operations">
             <span>
               <a-radio
@@ -38,11 +34,7 @@
           </div>
         </template>
       </a-table>
-<<<<<<< HEAD
       <div style="margin-top: 32px;" class="mrg_b22 tabs_style_">
-=======
-      <div class="mrg_b22 tabs_style_">
->>>>>>> update
         <a-radio-group v-model="byValue" buttonStyle="solid">
           <a-radio-button value="a">保险方案</a-radio-button>
           <a-radio-button value="b">影像件</a-radio-button>
@@ -52,22 +44,6 @@
       </div>
       <a-table v-if="byValue == 'a'" :columns="columns1" :dataSource="data1">
         <a slot="name" slot-scope="text" href="javascript:;">{{ text }}</a>
-<<<<<<< HEAD
-=======
-        <!-- <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-          <span slot="tags" slot-scope="tags">
-            <a-tag v-for="tag in tags" color="blue" :key="tag">{{tag}}</a-tag>
-          </span> -->
-        <!-- <span slot="action" slot-scope="text, record">
-            <a href="javascript:;">Invite 一 {{record.name}}</a>
-            <a-divider type="vertical" />
-            <a href="javascript:;">Delete</a>
-            <a-divider type="vertical" />
-            <a href="javascript:;" class="ant-dropdown-link">
-              More actions <a-icon type="down" />
-            </a>
-          </span> -->
->>>>>>> update
       </a-table>
       <div v-else class="clearfix">
         <a-upload
@@ -76,16 +52,8 @@
           :fileList="fileList"
           @preview="handlePreview"
           @change="handleChange"
-<<<<<<< HEAD
           :showUploadList="{showPreviewIcon: true, showRemoveIcon: false}"
         >
-=======
-        >
-          <div v-if="fileList.length < 3">
-            <a-icon type="plus" />
-            <div class="ant-upload-text">Upload</div>
-          </div>
->>>>>>> update
         </a-upload>
         <a-modal
           :visible="previewVisible"
@@ -161,7 +129,6 @@ const columns = [
   }
 ];
 const data = [];
-<<<<<<< HEAD
 // for (let i = 0; i < 100; i++) {
 //   data.push({
 //     id: i.toString(),
@@ -175,21 +142,6 @@ const data = [];
 //     premium: 500.0
 //   });
 // }
-=======
-for (let i = 0; i < 100; i++) {
-  data.push({
-    id: i.toString(),
-    policyNo: "保障中",
-    productName: "复星联合星相印",
-    companyName: `复星联合`,
-    startDate: "2019-09-16",
-    endDate: "2020-09-16",
-    mainCount: 2,
-    noMainCount: 1,
-    premium: 500.0
-  });
-}
->>>>>>> update
 const columns1 = [
   {
     title: "方案名称",
@@ -211,13 +163,8 @@ const columns1 = [
   },
   {
     title: "赔付比率",
-<<<<<<< HEAD
     dataIndex: "deductibleExcess",
     key: "deductibleExcess"
-=======
-    dataIndex: "lossRation",
-    key: "lossRation"
->>>>>>> update
   },
   {
     title: "保障人员类型",
@@ -226,7 +173,6 @@ const columns1 = [
   }
 ];
 const data1 = [];
-<<<<<<< HEAD
 // for (var i = 0; i < 4; i++) {
 //   data1.push({
 //     planName: "复星联合星相印重大疾病保险家庭保障方案（查看详情）",
@@ -234,15 +180,6 @@ const data1 = [];
 //     lossRation: 5 + Math.floor(15 * Math.random())
 //   });
 // }
-=======
-for (var i = 0; i < 4; i++) {
-  data1.push({
-    planName: "复星联合星相印重大疾病保险家庭保障方案（查看详情）",
-    planValue: 199 + i,
-    lossRation: 5 + Math.floor(15 * Math.random())
-  });
-}
->>>>>>> update
 export default {
   data() {
     return {
@@ -270,30 +207,23 @@ export default {
       }
     };
   },
-<<<<<<< HEAD
   watch: {
     'bdState': function (val) {
       console.log(val)
       this.fetchList(1)
     }
   },
-=======
->>>>>>> update
   mounted() {
     this.fetchList(1)
   },
   methods: {
-<<<<<<< HEAD
     handleTableChange (pagination) {
       this.fetchList(pagination.current)
     },
-=======
->>>>>>> update
     fetchList (pageNum = 1) {
       api
         .policyList({
           pageNum,
-<<<<<<< HEAD
           pageSize: this.pagination.pageSize,
           underwrideStatus: this.bdState
         })
@@ -305,15 +235,6 @@ export default {
           if(list.length > 0) {
             this.fetchDetail(list[0].id)
           }
-=======
-          pageSize: this.pagination.pageSize
-        })
-        .then(res => res.data)
-        .then(data => {
-          // this.fetchDetail();
-          const {total, list} = data.content
-          this.data = list
->>>>>>> update
         });
     },
     fetchDetail(policyId) {
@@ -321,15 +242,11 @@ export default {
         .fileAndPlaList({
           policyId
         })
-<<<<<<< HEAD
         .then(res => res.data).then(data => {
           const {fileList, planList} = data.content;
           this.fileList = fileList
           this.data1 = planList
         });
-=======
-        .then(data => {});
->>>>>>> update
     },
     changePolicy(record) {
       console.log(record, "changePolicy -> ");
