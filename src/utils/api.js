@@ -126,7 +126,7 @@ api.appointment = function(data) {
 };
 // 保单列表 params = [isInUnder -> [Y/N]]
 api.policyList = function(data) {
-  return instance.post(`/plug/policyList`, data);
+  return instance.post(`/plug/policyList?${qs.stringify(data)}`);
 };
 
 api.updateUser = function(data) {
