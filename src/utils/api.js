@@ -107,7 +107,11 @@ instance.interceptors.response.use(
 
 let api = {};
 api.userLogin = function(data) {
-  return instance.post("/backstage/user/login", data);
+  return instance.post("backstage/user/login/authority", qs.stringify(data));
+};
+// 退出登录
+api.exitLogin = function(data) {
+  return instance.post("/backstage/user/exit", data);
 };
 // 福利人员列表
 api.getInsurceList = function(data) {

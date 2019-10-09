@@ -16,26 +16,25 @@
           <div v-else>
             <a-row>
               <a-col :span="4">{{formInfo.userName}} </a-col>
-              <a-col style="text-align: right;" :span="12">
+              <!-- <a-col style="text-align: right;" :span="12">
                 <a @click="changeToEdit('editable')" href="javascript:;">修改</a>
-              </a-col>
+              </a-col> -->
             </a-row>
           </div>
         </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="密码">
+        <a-form-item v-bind="formItemLayout" label="修改密码">
           <a-input v-if="pEditable" v-decorator="[
             'userPassword',
             {
-              initialValue: formInfo.userPassword,
               ...inputRequired
             }
           ]" placeholder="请输入密码"></a-input>
           <div v-else>
             <a-row>
-              <a-col :span="4">
+              <!-- <a-col :span="4">
                 {{formInfo.userPassword}} 
-              </a-col>
-              <a-col style="text-align: right;" :span="12">
+              </a-col> -->
+              <a-col style="text-align: right;" :span="2">
                 <a @click="changeToEdit('pEditable')" href="javascript:;">修改</a>
               </a-col>
             </a-row>
@@ -121,9 +120,10 @@ export default {
   methods: {
     updateUser (options) {
       api.updateUser({
-        ...options
+        ...options,
+        id: this.formInfo.id
       }).then(res => res.data).then(data => {
-        window.message('修改成功')
+        this.$message.info('修改成功')
         this.closeEdit()
       })
     },
@@ -132,7 +132,11 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('hanleSubmit -> ', values)
+          // this.formInfo.userName = values.userName || this.formInfo.userName
+          // this.formInfo.userPassword = values.userPassword || this.formInfo.userPassword
+
           this.updateUser(values)
+
         }
       })
     },

@@ -21,7 +21,7 @@
               <template v-else>{{text}}</template>
             </div>
           </template> -->
-        <template slot="operation" slot-scope="text, record, index">
+        <template slot="operation" slot-scope="text, record">
           <div class="editable-row-operations">
             <span>
               <a-radio
