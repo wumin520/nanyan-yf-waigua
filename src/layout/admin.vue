@@ -47,7 +47,7 @@
         />
         <a-popover placement="bottom">
           <template slot="content">
-            <a href="javascript:;">退出登录</a>
+            <a href="javascript:;"  @click="exit">退出登录</a>
           </template>
           <template slot="title">
             <div style="text-align: center;">me</div>
@@ -83,7 +83,7 @@
 </template>
 <script>
 import SubMenu from "./SubMenu";
-
+import api from '@/utils/api';
 export default {
   data() {
     return {
@@ -162,6 +162,13 @@ export default {
   },
   mounted() {
     console.log(this.$router, this.$route, this);
+  },
+  methods: {
+    exit () {
+      api.exitLogin().then(res => res.data).then((data) => {
+        this.$router.push({name:"login"});
+      })
+    }
   }
 };
 </script>
