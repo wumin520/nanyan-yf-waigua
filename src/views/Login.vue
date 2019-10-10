@@ -139,6 +139,7 @@ export default {
     this.form = this.$form.createForm(this);
   },
   mounted () {
+    this.url = "/api/backstage/user/getVerificationCode/authority?" + this.$route.params.num;
   },
   methods: {
     changeImgCode () {
@@ -152,6 +153,10 @@ export default {
         setLogined(1);
         const { query } = this.$route;
         this.promptMsgAndJump('登录成功，准备跳转...', query.redirect || '/dashboard');
+      }).catch((err) => {
+        if(err.data.returnCode  === '1004'){
+            this.changeImgCode()
+        }
       })
     },
     handleSubmit(e) {
