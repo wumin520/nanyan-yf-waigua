@@ -212,12 +212,12 @@ export default {
   },
   methods: {
     handleBZZChange (e) {
-      this.insurceType = e.target.value
+      this.planType = e.target.value
       console.log('e -> handleRYChange', e)
       this.fetchList(1)
     },
     handleRYChange (e) {
-      this.planType = e.target.value
+      this.insurceType = e.target.value
       this.fetchList(1)
     },
     handleChange (pagination) {

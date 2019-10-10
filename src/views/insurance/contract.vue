@@ -239,6 +239,9 @@ export default {
           if(list.length > 0) {
             this.fetchDetail(list[0].id);
             this.currentId = list[0].id;
+          } else {
+            this.data1 = [];
+            this.fileList = []
           }
         });
     },

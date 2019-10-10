@@ -254,16 +254,36 @@
       </div>
       <div class="section_ section_4_">
         <div class="bottom_line_ title_">他们信任员福</div>
-        <div class="c_">
+        <div style="margin-bottom: 32px;" class="c_">
           <a-row :gutter="12">
             <a-col :span="4">
-              <img class="img_" src="" />
+              <img class="img_" src="../assets/home/c1.jpg" />
             </a-col>
             <a-col :span="4">
-              <img class="img_" src="" />
+              <img class="img_" src="../assets/home/c2.jpg" />
             </a-col>
             <a-col :span="4">
-              <img class="img_" src="" />
+              <img class="img_" src="../assets/home/c3.jpg" />
+            </a-col>
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c4.jpg" />
+            </a-col>
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c5.jpg" />
+            </a-col>
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c6.jpg" />
+            </a-col>
+          </a-row>
+          <a-row :gutter="12">
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c7.jpg" />
+            </a-col>
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c8.jpg" />
+            </a-col>
+            <a-col :span="4">
+              <img class="img_" src="../assets/home/c9.jpg" />
             </a-col>
           </a-row>
         </div>

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.c5f8acda9f4ef0ba38b05ddd2e816e7e.js"
+  "/precache-manifest.928bd1f1174368cef77894dac18fd96f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "bigger-vue"});
