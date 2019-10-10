@@ -86,7 +86,8 @@ instance.interceptors.response.use(
     const { returnCode, returnMsg } = response.data;
     if (returnCode !== "0000") {
       if (returnCode == '1012') {
-        window.router.push('/login');
+        var num=Math.ceil(Math.random()*10);
+        window.router.push({name:"login",params:{num}});
       } else {
         window.message.error(returnMsg);
       }
@@ -138,7 +139,7 @@ api.policyList = function(data) {
 };
 
 api.updateUser = function(data) {
-  return instance.post("/backstage/user/updateUser", data);
+  return instance.post("/backstage/user/updateUser", qs.stringify(data));
 };
 
 api.cdkMonthProfit = function() {
