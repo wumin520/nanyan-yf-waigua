@@ -44,6 +44,9 @@
       </div>
       <a-table v-if="byValue == 'a'" :columns="columns1" :dataSource="data1">
         <a slot="name" slot-scope="text" href="javascript:;">{{ text }}</a>
+        <template slot="insurceType" slot-scope="text">
+          {{text == 1 ? '员工' : '子女及家属'}}
+        </template>
       </a-table>
       <div v-else class="clearfix">
         <a-upload
@@ -153,23 +156,24 @@ const columns1 = [
   },
   {
     title: "保障金额",
-    dataIndex: "planValue",
-    key: "planValue"
+    dataIndex: "coverage",
+    key: "coverage"
   },
   {
     title: "免赔额",
-    dataIndex: "lossRation",
-    key: "lossRation"
-  },
-  {
-    title: "赔付比率",
     dataIndex: "deductibleExcess",
     key: "deductibleExcess"
   },
   {
+    title: "赔付比率",
+    dataIndex: "lossRation",
+    key: "lossRation"
+  },
+  {
     title: "保障人员类型",
     dataIndex: "insurceType",
-    key: "insurceType"
+    key: "insurceType",
+    scopedSlots: { customRender: 'insurceType' }
   }
 ];
 const data1 = [];
@@ -233,7 +237,8 @@ export default {
           this.data = list
           this.pagination.total = total
           if(list.length > 0) {
-            this.fetchDetail(list[0].id)
+            this.fetchDetail(list[0].id);
+            this.currentId = list[0].id;
           }
         });
     },
@@ -244,7 +249,14 @@ export default {
         })
         .then(res => res.data).then(data => {
           const {fileList, planList} = data.content;
-          this.fileList = fileList
+          this.fileList = fileList.map(val => {
+            return {
+              uid: val.id,
+              id: val.id,
+              name: val.name,
+              url: val.url
+            }
+          })
           this.data1 = planList
         });
     },

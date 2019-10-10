@@ -95,6 +95,9 @@
         <template slot="name" slot-scope="text">
           <div>{{ text }}</div>
         </template>
+        <template slot="isMain" slot-scope="text">
+          {{text == 'Y' ? '主被保人' : '被保人'}}
+        </template>
       </a-table>
     </a-card>
   </div>
@@ -164,7 +167,8 @@ const columns = [
   {
     title: "人员类型",
     dataIndex: "isMain",
-    key: 'isMain'
+    key: 'isMain',
+    scopedSlots: { customRender: 'isMain' }
   },
   {
     title: "工号",

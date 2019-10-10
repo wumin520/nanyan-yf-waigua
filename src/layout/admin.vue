@@ -50,7 +50,7 @@
             <a href="javascript:;"  @click="exit">退出登录</a>
           </template>
           <template slot="title">
-            <div style="text-align: center;">me</div>
+            <div class="username_" style="text-align: center;">{{userName}}</div>
           </template>
           <a-avatar style="backgroundColor:#297FFF; margin-left: auto;position: absolute; right: 72px;top: 13px;" icon="user" />
         </a-popover>
@@ -84,6 +84,7 @@
 <script>
 import SubMenu from "./SubMenu";
 import api from '@/utils/api';
+import { getUserInfo } from '@/utils/authorized'
 export default {
   data() {
     return {
@@ -142,7 +143,8 @@ export default {
           url: "/dashboard/accountInfo"
         }
       ],
-      routes: []
+      routes: [],
+      userName: ''
     };
   },
   watch: {
@@ -162,6 +164,8 @@ export default {
   },
   mounted() {
     console.log(this.$router, this.$route, this);
+    const userInfo = getUserInfo() || {}
+    this.userName = userInfo.userName || 'Me'
   },
   methods: {
     exit () {
@@ -180,6 +184,12 @@ export default {
   .ant-popover-inner-content {
     padding: 8px 0;
     text-align: center;
+  }
+  .username_ {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 #components-layout-demo-custom-trigger {

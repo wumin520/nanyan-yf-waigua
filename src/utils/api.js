@@ -126,7 +126,7 @@ api.getAllProvince = function() {
 };
 // 附件、保障信息 params = [policyId]
 api.fileAndPlaList = function(data) {
-  return instance.post("/plug/fileAndPlaList", data);
+  return instance.post(`/plug/fileAndPlaList?${qs.stringify(data)}`);
 };
 // 预约信息
 api.appointment = function(data) {
