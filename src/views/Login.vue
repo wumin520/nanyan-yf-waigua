@@ -2,7 +2,7 @@
   <div class="login_bg_">
     <div class="top_header_ c">
       <div class="w1024 b_line_ navbar_ clearfix">
-        <img class="logo_" src="../assets/logo.png" />
+        <img class="logo_" src="../assets/home/logo2.png" />
         <router-link to="/">
           <button class="btn_ btn_plain_ btn_home_ fr_">
             返回首页
@@ -190,7 +190,7 @@ export default {
     // margin-bottom: 60px;
 
     .logo_ {
-      width: 102px;
+      width: 121px;
       height: auto;
       display: inline-block;
     }
@@ -203,7 +203,7 @@ export default {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .navbar_ {
-    padding-bottom: 18px;
+    padding-bottom: 12px;
   }
   .content_ {
     margin-top: 16%;

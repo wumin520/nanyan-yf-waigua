@@ -6,7 +6,7 @@
       <div class="home_header_ w1024">
         <div class="nav_ clearfix">
           <div class="logo_">
-            <img src="../assets/home/logo1.png" />
+            <img src="../assets/home/logo2.png" />
           </div>
           <div class="right_">
             <ul>
