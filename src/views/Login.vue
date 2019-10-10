@@ -15,7 +15,7 @@
         <a-col :span="12">
           <div class="home_header_">
             <div class="center_">
-              <div class="title_">你身边的安全管家</div>
+              <div class="title_">一站式员工福利保险方案专家</div>
               <div class="desc_">
                 5000家企业，数十万名员工的信赖<br />
                 用心做企业信任、员工满意的企业员工保险平台
@@ -112,9 +112,9 @@
     </div>
     <div class="footer_">
       <div>
-        <a-divider type="vertical" />我们的产品
-        <a-divider type="vertical" />理赔服务
-        <a-divider type="vertical" />关于我们
+        <a-divider type="vertical" /><router-link to="/#section1_">我们的产品1</router-link>
+        <a-divider type="vertical" /><router-link to="/#section2_">理赔服务</router-link>
+        <a-divider type="vertical" /><router-link to="/#section3_">关于我们</router-link>
         <a-divider type="vertical" />
       </div>
       <div class="company_info_">
@@ -262,6 +262,9 @@ export default {
     font-weight: bold;
     color: rgba(255, 255, 255, 1);
     margin-top: 36px;
+  }
+  a {
+    color: #fff;
   }
 }
 #components-form-demo-normal-login .login-form-forgot {
