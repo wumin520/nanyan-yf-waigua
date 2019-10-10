@@ -112,7 +112,7 @@ instance.interceptors.response.use(
 
 let api = {};
 api.userLogin = function(data) {
-  return instance.post("/backstage/user/login/authority", qs.stringify(data));
+  return instance.post("/backstage/user/plug/login/authority", qs.stringify(data));
 };
 // 退出登录
 api.exitLogin = function(data) {
