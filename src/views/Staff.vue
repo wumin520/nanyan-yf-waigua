@@ -96,7 +96,7 @@
           <div>{{ text }}</div>
         </template>
         <template slot="isMain" slot-scope="text">
-          {{text == 'Y' ? '主被保人' : '被保人'}}
+          {{text == 'Y' ? '主被保人' : '附属被保人'}}
         </template>
       </a-table>
     </a-card>

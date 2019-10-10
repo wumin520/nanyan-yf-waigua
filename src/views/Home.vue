@@ -43,7 +43,7 @@
           </div>
         </div>
         <div class="center_">
-          <div class="title_">你身边的安全管家</div>
+          <div class="title_">一站式员工福利保险方案专家</div>
           <div class="desc_">
             5000家企业，数十万名员工的信赖<br />
             用心做企业信任、员工满意的企业员工保险平台
@@ -63,29 +63,31 @@
         <ul>
           <li class="item_">
             <img class="img_" src="../assets/home/img1.png" />
-            <div class="item_title_">多重搭配，企业定制</div>
+            <div class="item_title_">专为企业定制</div>
             <div class="desc_">
-              多样化产品组合<br />
+              专为企业定制<br />
               可供企业定制专属方案<br />
               优化企业福利待遇
             </div>
           </li>
           <li class="item_">
             <img class="img_" src="../assets/home/img2.png" />
-            <div class="item_title_">多重搭配，企业定制</div>
+            <div class="item_title_">产品多样化</div>
             <div class="desc_">
-              多样化产品组合<br />
-              可供企业定制专属方案<br />
-              优化企业福利待遇
+              涵盖员工保险、<br />
+              体检和多种增值服务，<br/>
+              为企业员工提供了<br />
+              一站式家庭保障产品的购买
             </div>
           </li>
           <li class="item_">
             <img class="img_" src="../assets/home/img3.png" />
             <div class="item_title_">多重搭配，企业定制</div>
             <div class="desc_">
-              多样化产品组合<br />
-              可供企业定制专属方案<br />
-              优化企业福利待遇
+              线上操作<br />
+              解放hr; 智能管理系统<br />
+              为企业提供全程管理服务，<br/>
+              支持随时增、减员及在线理赔
             </div>
           </li>
         </ul>
@@ -294,20 +296,20 @@
         <a-row class="pre_">
           <a-col :span="12">
             <div class="left_">
-              <div class="mrg_b27">上海南燕信息技术有限公司</div>
+              <div class="mrg_b27"></div>
               <div class="mrg_b23">
                 <a-icon
                   type="phone"
-                />南燕客服专线：400-820-3433（服务时间9:30-17:30）
+                />客服专线：400-820-3433（服务时间9:30-17:30）
               </div>
-              <div><a-icon type="mail" />南燕客服邮箱：kefu@ssish.com</div>
+              <div><a-icon type="mail" />客服邮箱：kefu@ssish.com</div>
             </div>
           </a-col>
           <a-col :span="12">
             <div class="right_">
               <div class="qrcode_wrap_">
                 <img src="../assets/home/qrcode.jpeg" />
-                南燕公众号
+                宇泰员福公众号
               </div>
             </div>
           </a-col>
