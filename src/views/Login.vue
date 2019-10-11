@@ -118,8 +118,8 @@
         <a-divider type="vertical" />
       </div>
       <div class="company_info_">
-        上海南燕信息技术有限公司 © 2014-2018 Insgeek.com All Rights Reserved
-        京ICP备 拷贝
+        宇泰信息技术有限公司 © 2019-2029 yutaieb.com All Rights Reserved
+        京ICP备16001338号-6
       </div>
     </div>
   </div>

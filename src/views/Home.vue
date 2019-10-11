@@ -65,19 +65,18 @@
             <img class="img_" src="../assets/home/img1.png" />
             <div class="item_title_">专为企业定制</div>
             <div class="desc_">
-              专为企业定制<br />
-              可供企业定制专属方案<br />
-              优化企业福利待遇
+              可供企业定制<br />
+              专属方案优化企业福利待遇
             </div>
           </li>
           <li class="item_">
             <img class="img_" src="../assets/home/img2.png" />
             <div class="item_title_">产品多样化</div>
             <div class="desc_">
-              涵盖员工保险、<br />
-              体检和多种增值服务，<br/>
-              为企业员工提供了<br />
-              一站式家庭保障产品的购买
+              涵盖员工保险、体检<br />
+              和多种增值服务，为<br/>
+              企业员工提供了一站<br />
+              式家庭保障产品的购买
             </div>
           </li>
           <li class="item_">
@@ -315,14 +314,17 @@
         </a-row>
       </div>
       <div class="company_info_">
-        上海南燕信息技术有限公司 © 2014-2018 Insgeek.com All Rights Reserved
-        京ICP备
+        宇泰信息技术有限公司 © 2019-2029 yutaieb.com All Rights Reserved
+        京ICP备16001338号-6
       </div>
     </div>
   </div>
 </template>
 <style lang="scss" scoped>
 @import "@/sass/common.scss";
+.home_ {
+  min-width: 1200px;
+}
 .btn_wrap_ {
   text-align: center;
   a:focus,

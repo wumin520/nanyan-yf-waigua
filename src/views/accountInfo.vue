@@ -87,7 +87,7 @@
 </style>
 <script>
 import api from '@/utils/api';
-import { getUserInfo } from '@/utils/authorized'
+import { getUserInfo, promptMsgAndJump } from '@/utils/authorized'
 
 export default {
   data() {
@@ -114,12 +114,13 @@ export default {
     console.log(userInfo, '1')
   },
   methods: {
+    promptMsgAndJump,
     updateUser (options) {
       api.updateUser({
         ...options,
         id: this.formInfo.id
       }).then(res => res.data).then(data => {
-        this.$message.info('修改成功')
+        this.promptMsgAndJump('密码已修改，请重新登录！正在跳转...', '/login')
         this.closeEdit()
       })
     },
