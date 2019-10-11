@@ -82,10 +82,9 @@
           </li>
           <li class="item_">
             <img class="img_" src="../assets/home/img3.png" />
-            <div class="item_title_">多重搭配，企业定制</div>
+            <div class="item_title_">线上操作，解放hr </div>
             <div class="desc_">
-              线上操作<br />
-              解放hr; 智能管理系统<br />
+              智能管理系统<br />
               为企业提供全程管理服务，<br/>
               支持随时增、减员及在线理赔
             </div>
@@ -450,6 +449,7 @@ img {
       display: inline-block;
       width: 211px;
       margin-right: 114px;
+      vertical-align: top;
       &:last-child {
         margin-right: 0;
       }
