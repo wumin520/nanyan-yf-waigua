@@ -154,7 +154,7 @@ export default {
         const { query } = this.$route;
         this.promptMsgAndJump('登录成功，准备跳转...', query.redirect || '/dashboard');
       }).catch((err) => {
-        if(err.data.returnCode  === '1004'){
+        if(err.data.returnCode  !== '0000'){
             this.changeImgCode()
         }
       })
