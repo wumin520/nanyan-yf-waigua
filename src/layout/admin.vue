@@ -30,7 +30,7 @@
         <template v-for="item in list">
           <a-menu-item v-if="!item.children" :key="item.key">
             <router-link :to="item.url">
-              <a-icon type="pie-chart" />
+              <a-icon :type="item.iconType" />
               <span>{{ item.title }}</span>
             </router-link>
           </a-menu-item>
@@ -98,16 +98,19 @@ export default {
         {
           key: "3",
           title: "福利人员",
-          url: "/dashboard/staff"
+          url: "/dashboard/staff",
+          iconType: "insurance"
         },
         {
           key: "2",
           title: "保单管理",
+          iconType: "project",
           children: [
             {
               key: "2.1",
               title: "保单总览",
-              url: "/dashboard/contract"
+              url: "/dashboard/contract",
+              iconType: "read"
             }
             // {
             //   key: "2.2",
@@ -140,7 +143,8 @@ export default {
         {
           key: "5",
           title: "账号信息",
-          url: "/dashboard/accountInfo"
+          url: "/dashboard/accountInfo",
+          iconType: 'user'
         }
       ],
       routes: [],

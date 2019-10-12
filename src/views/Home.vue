@@ -241,7 +241,7 @@
         <div class="bottom_line_ title_">公司简介</div>
         <div>
           <div class="img_wrap_">
-            <img src="../assets/home/img4.png" />
+            <img src="../assets/home/img4.jpg" />
           </div>
           <div class="right_">
             <div class="item_title_">ABOUT US</div>
@@ -374,7 +374,7 @@ img {
   height: auto;
 }
 .header_wrap_ {
-  background: url("../assets/home/img5.png") no-repeat;
+  background: url("../assets/home/img5.jpg") no-repeat;
   background-size: 100% 100%;
   background-position: left top;
   padding-bottom: 2px;
