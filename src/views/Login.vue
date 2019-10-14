@@ -132,19 +132,20 @@ import { setLogined, cacheUserInfo, promptMsgAndJump } from '@/utils/authorized'
 export default {
   data () {
     return {
-      url: "/api/backstage/user/getVerificationCode/authority"
+      url: api.imgCode
     }
   },
   beforeCreate() {
     this.form = this.$form.createForm(this);
   },
   mounted () {
-    this.url = "/api/backstage/user/getVerificationCode/authority?" + this.$route.params.num || 80;
+    let rand = this.$route.params.num || 80;
+    this.url = api.imgCode + "?" + rand;
   },
   methods: {
     changeImgCode () {
       var num=Math.ceil(Math.random()*10);
-      this.url = "/api/backstage/user/getVerificationCode/authority?" + num;
+      this.url = api.imgCode + "?" + num;
     },
     promptMsgAndJump,
     login (params) {

@@ -170,4 +170,6 @@ api.singleGoodsurl = function(params) {
   );
 };
 
+api.imgCode = '/api/backstage/user/plug/getVerificationCode/authority';
+
 export default api;

@@ -238,6 +238,7 @@ export default {
       });
     },
     postData (params) {
+      params.type = 1
       api.appointment(params).then(res => res.data).then(data => {
         this.$message.info('添加成功')
         this.handleReset()
