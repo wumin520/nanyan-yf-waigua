@@ -10,11 +10,21 @@
 
 <style lang="scss">
 body {
-  .ant-card {
+  .ant-card, * {
     font-family: "PingFang SC-Regular", "Hiragino Sans GB", "Microsoft YaHei",
       "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Chinese Quote", -apple-system,
       BlinkMacSystemFont, "Segoe UI";
+  }
+  .ant-steps-item-title {
+    font-size: 13px;
+    color: #333333;
+  }
+  .search-form .ant-form-item {
+    display: flex;
+  }
+  .search-form .ant-form-item-control-wrapper {
+    flex: 1;
   }
 }
 #app {

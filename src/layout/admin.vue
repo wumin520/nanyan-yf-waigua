@@ -21,7 +21,7 @@
         </a-menu-item>
       </a-menu> -->
       <a-menu
-        :defaultSelectedKeys="['3']"
+        :selectedKeys="selectedKeys"
         :defaultOpenKeys="['2']"
         mode="inline"
         theme="light"
@@ -63,7 +63,7 @@
           <span v-if="routes.indexOf(route) === routes.length - 1">
             {{ route.breadcrumbName }}
           </span>
-          <router-link v-else :to="paths.join('/')">
+          <router-link v-else :to="route.path">
             {{ route.breadcrumbName }}
           </router-link>
         </template>
@@ -90,11 +90,12 @@ export default {
     return {
       collapsed: false,
       list: [
-        // {
-        //   key: "1",
-        //   title: "概览",
-        //   url: '/dashboard/list'
-        // },
+        {
+          key: "1",
+          title: "待办事项",
+          url: '/dashboard/list',
+          iconType: "mail"
+        },
         {
           key: "3",
           title: "福利人员",
@@ -111,12 +112,13 @@ export default {
               title: "保单总览",
               url: "/dashboard/contract",
               iconType: "read"
-            }
-            // {
-            //   key: "2.2",
-            //   title: "保全管理",
-            //   url: '/dashboard/baoquan'
-            // },
+            },
+            {
+              key: "2.2",
+              title: "保全管理",
+              url: '/dashboard/baoquan',
+              iconType: "scissor"
+            },
             // {
             //   key: "2.3",
             //   title: "理赔管理",
@@ -148,19 +150,14 @@ export default {
         }
       ],
       routes: [],
+      selectedKeys: [],
       userName: ''
     };
   },
   watch: {
     $route: function() {
       console.log("route change -> ", this.$route);
-      const arr = this.$route.matched.map((item, index) => {
-        return {
-          path: item.path,
-          breadcrumbName: item.meta.breadcrumbName || "首页"
-        };
-      });
-      this.routes = arr;
+      this.filterBreadcrumb()
     }
   },
   components: {
@@ -170,8 +167,40 @@ export default {
     console.log(this.$router, this.$route, this);
     const userInfo = getUserInfo() || {}
     this.userName = userInfo.userName || 'Me'
+    this.filterBreadcrumb()
   },
   methods: {
+    filterBreadcrumb () {
+      // 面包屑
+      const arr = this.$route.matched.map((item, index) => {
+        return {
+          path: item.path,
+          breadcrumbName: item.meta.breadcrumbName || "首页"
+        };
+      });
+      this.routes = arr;
+
+      // 菜单选择
+      let path = this.$route.path;
+      let hashArr = [];
+      let flatList = arr => {
+        for (var i = 0; i < arr.length; i++) {
+          let item = arr[i];
+          hashArr.push(item);
+          if (item.children) {
+            flatList(item.children);
+          }
+        }
+      };
+      flatList(this.list);
+      let findItem = hashArr.filter(value => {
+        return path == value.url;
+      });
+      if (findItem.length > 0) {
+        this.selectedKeys = [findItem[0].key];
+      }
+      console.log("findItem ->   ", findItem, hashArr);
+    },
     exit () {
       api.exitLogin().then(res => res.data).then((data) => {
         var num=Math.ceil(Math.random()*10);

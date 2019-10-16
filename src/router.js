@@ -7,11 +7,13 @@ import Login from "./views/Login.vue";
 import Staff from "./views/Staff.vue";
 import InsuranceContract from "./views/insurance/contract";
 import planInformation from "./views/insurance/planInformation";
-import Baoquan from "./views/insurance/baoquan/index";
+import BaoquanIndex from "./views/insurance/baoquan/index";
+import Baoquan from "./views/insurance/baoquan/list";
 import credentialsUpload from "./views/credentials/upload";
 import credentialsSearch from "./views/credentials/search";
 import accountInfo from "./views/accountInfo";
 import baoquanAdd from "./views/insurance/baoquan/add";
+import baoquanEdit from "./views/insurance/baoquan/edit";
 
 Vue.use(Router);
 
@@ -44,7 +46,7 @@ export default new Router({
           name: "list",
           component: Dashboard,
           meta: {
-            breadcrumbName: "理赔查询"
+            breadcrumbName: "待办事项"
           }
         },
         {
@@ -74,10 +76,60 @@ export default new Router({
         {
           path: "baoquan",
           name: "baoquan",
-          component: Baoquan,
+          component: BaoquanIndex,
           meta: {
             breadcrumbName: "保全管理"
-          }
+          },
+          children: [{
+            path: "",
+            name: "baoquan-list",
+            component: Baoquan,
+            meta: {
+              breadcrumbName: "保全管理"
+            },
+          }, { // 保单加减人
+            path: "add/:id",
+            name: "baoquan-add",
+            component: baoquanAdd,
+            meta: {
+              breadcrumbName: "增加被保险人"
+            }
+          }, {
+            path: "sub/:id",
+            name: "baoquan-sub",
+            component: baoquanAdd,
+            meta: {
+              breadcrumbName: "减少被保险人"
+            }
+          }, {
+            path: "edit/:id",
+            name: "baoquan-edit",
+            component: baoquanEdit,
+            meta: {
+              breadcrumbName: "编辑被保险人"
+            }
+          }, { // 批单进行加减人
+            path: "pd/add/:id",
+            name: "baoquan-pd-add",
+            component: baoquanAdd,
+            meta: {
+              breadcrumbName: "增加被保险人"
+            }
+          }, {
+            path: "pd/sub/:id",
+            name: "baoquan-pd-sub",
+            component: baoquanAdd,
+            meta: {
+              breadcrumbName: "减少被保险人"
+            }
+          }, {
+            path: "pd/edit/:id",
+            name: "baoquan-pd-edit",
+            component: baoquanAdd,
+            meta: {
+              breadcrumbName: "编辑被保险人"
+            }
+          }, ]
         },
         {
           path: "credentialsUpload",
@@ -101,14 +153,6 @@ export default new Router({
           component: accountInfo,
           meta: {
             breadcrumbName: "账号信息"
-          }
-        },
-        {
-          path: "baoquanAdd",
-          name: "baoquan-add",
-          component: baoquanAdd,
-          meta: {
-            breadcrumbName: "增加被保险人"
           }
         }
       ]

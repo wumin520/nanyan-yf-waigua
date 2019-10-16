@@ -141,6 +141,56 @@ api.policyList = function(data) {
 api.updateUser = function(data) {
   return instance.post("/backstage/user/updateUser", qs.stringify(data));
 };
+/**
+ * 批单列表
+ * /plug/getBatchListByPolicyId?pageNum=1&pageSize=5
+ * params:
+ * policyId: ''
+ */
+api.getBatchListByPolicyId = function(data) {
+  return instance.post('/plug/getBatchListByPolicyId', data)
+};
+/** 待办事项
+ * /plug/getBatchListByStatus?pageNum=1&pageSize=5
+ */
+api.getBatchListByStatus = function(data) {
+  return instance.post('/plug/getBatchListByStatus', data);
+};
+/**
+ * 批单详情
+ * plug/getBatchDetailById
+ * params:
+ * id
+ */
+api.getBatchDetailById = function(data) {
+  return instance.post('/plug/getBatchDetailById', data);
+};
+/**
+ * 发送数据给保司/plug/sendmail
+ * params: {[id]}
+ */
+api.sendmail = function(data) {
+  return instance.post('/plug/sendmail', data);
+};
+/**保单批改 /plug/doBatchupdate
+ * params:
+ * policyId
+ * type: 批改类型1,加人,2,修改,3减人
+ * insurceList
+ */
+api.doBatchupdate = function(data) {
+  return instance.post("/plug/doBatchupdate", data);
+};
+
+// 批量增加 /plug/getVolumeIncrease
+api.getVolumeIncrease = function(data) {
+  return instance.post("/plug/getVolumeIncrease", data);
+};
+//请求URL ：/plug/getDeleteBatches 批量删除上传 
+api.getDeleteBatches = function(data) {
+  return instance.post("/plug/getDeleteBatches", data);
+};
+//请求URL ：/plug/getBatchModifying 批量修改上传
 
 api.cdkMonthProfit = function() {
   return instance.get("/sh/month/profit");
