@@ -44,7 +44,7 @@
         <a-checkbox-group v-model="checkedList" @change="handleGroupChange">
           <a-row>
             <a-col :key="item.id" v-for="item in list" :span="24">
-              <a-checkbox :value="item.id">{{item.createDate}}{{item.type | filterType}}{{item.insurceCount}}人</a-checkbox> <router-link style="margin-left: 16px;" :to="`/dashboard/baoquan/pd/list/${item.id}`">点击查看或修改</router-link>
+              <a-checkbox :value="item.id">{{item.createDate | formatDate}} {{item.type | filterType}} {{item.insurceCount}}人</a-checkbox> <router-link style="margin-left: 16px;" :to="`/dashboard/baoquan/pd/list/${item.id}`">点击查看或修改</router-link>
             </a-col>
           </a-row>
         </a-checkbox-group>
@@ -123,6 +123,7 @@
 </style>
 <script>
 import api from '@/utils/api';
+import moment from 'moment';
 
 export default {
   data() {
@@ -136,6 +137,9 @@ export default {
     };
   },
   filters: {
+    formatDate (val) {
+      return val && moment(val).format('YYYY-MM-DD')
+    },
     filterType (val) {
       return val == 1 ? '加人' : val == 2 ? '变更' : '减人'
     },
@@ -144,6 +148,7 @@ export default {
     this.fetchData()
   },
   methods: {
+    moment,
     submit () {
       if (this.checkedList.length < 1) {
         this.$message.info('请先选择代办事项')

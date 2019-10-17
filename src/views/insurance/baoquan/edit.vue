@@ -191,9 +191,10 @@ export default {
         id: this.$route.params.id,
         pageSize: this.pagination.pageSize
       }).then(res => res.data).then(data => {
-        const {insurceList, total} = data.content
+        const {insurceList, total, fileList} = data.content
         this.data = insurceList
         this.total = total
+        this._fileList = fileList
       })
     },
     forwardTo (key, record) {
@@ -203,7 +204,10 @@ export default {
       }
       this.$router.push({
         name,
-        params: {record, id: this._id}
+        params: {record: {
+          ...record,
+          fileList: this._fileList
+        }, id: this._id}
       })
     },
   }

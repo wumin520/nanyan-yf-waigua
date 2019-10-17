@@ -38,7 +38,7 @@
       </div>
       <a-divider />
       <div class="options_select_">
-        办理状态：<label @click="handleSelectChange(item, 'selectStatus')" v-for="item in statusLabels" :class="selectStatus == item.value ? 'active_' : ''">{{item.name}}</label>
+        办理状态：<label @click="handleSelectChange(item, 'selectStatus')" v-for="item in statusLabels" :class="selectStatus === item.value ? 'active_' : ''">{{item.name}}</label>
       </div>
       <a-divider />
       <a-table :columns="columns1" :dataSource="data1">
@@ -205,7 +205,7 @@ export default {
       },],
       timesLabels: [{
         name: '本月',
-        value: [moment().startOf('months').format('YYYY-MM-DD'), moment()]
+        value: [moment().startOf('months'), moment()]
       }, {
         name: '近三个月',
         value: [moment().subtract(3, 'months'), moment()]
@@ -215,20 +215,20 @@ export default {
       }, ],
       statusLabels: [{
         name: '失效',
-        value: '0'
+        value: 0
       }, {
         name: '待处理',
-        value: '1'
+        value: 1
       }, {
         name: '审批中',
-        value: '2'
+        value: 2
       }, {
         name: '已完成',
-        value: '3'
+        value: 3
       }, ],
       selectTime: '',
       selectType: '',
-      selectStatus: '',
+      selectStatus: null,
       policyId: '',
       selectRangeTime: []
     };
@@ -260,16 +260,18 @@ export default {
       this.policyId = record.id
     },
     handleSelectChange (item = {}, key) {
-      if (item.value) {
+      if (item.value || item.value == 0) {
         this[key] = item.value;
       }
       if (key == 'bdState') {
         this.fetchList(1)
         return
       }
-      console.log('params -> ', item, key, this.selectTime);
       const ifValue = function (obj, key, val) {
         if (val && key) {
+          obj[key] = val
+        }
+        if (val === 0) {
           obj[key] = val
         }
       }
@@ -284,6 +286,7 @@ export default {
           createDateEnd: this.selectTime[1].format('YYYY-MM-DD'),
         }
       }
+      console.log('params -> ', item, key, this.selectTime);
       this.getBatchListByPolicyId(1, params);
     },
     handleTableChange (pagination) {

@@ -158,7 +158,7 @@
         </a-col>
       </a-row>
       <a-row>
-        <a-col push="20" :span="4">
+        <a-col push="20" :xs="24" :span="4">
           <a-button html-type="submit" type="primary">保存</a-button>
           <a-button @click="back" style="margin-left: 8px;" type="primary" ghost>取消</a-button>
         </a-col>
@@ -189,7 +189,7 @@
         <a-step title="点击提交申请，申请完成。" description="" />
       </a-steps>
       <div style="margin-bottom: 16px;">
-        <div class="title_">上传影像件</div>
+        <div class="title_">上传影像件：</div>
         <div class="clearfix">
           <a-upload
             action="/api/common/upload"
@@ -207,9 +207,9 @@
         </div>
       </div>
       <a-row>
-        <a-col :push="1" :span="6">
+        <a-col :push="20" :xs="24" :span="4">
           <a-button @click="handleBatchSave" type="primary">保存</a-button>
-          <a-button style="margin-left: 16px;" type="primary" ghost>重置</a-button>
+          <a-button @click="back" style="margin-left: 16px;" type="primary" ghost>取消</a-button>
         </a-col>
       </a-row>
     </div>
