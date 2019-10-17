@@ -2,8 +2,7 @@
   <div>
     <a-card style="margin-top: 0;">
       <div class="options_select_">
-        合同状态： <label class="active_">全部</label><label>保障中</label
-        ><label>已过期</label>
+        合同状态： <label @click="handleSelectChange(item, 'bdState')" v-for="item in policyStatusLabels" :class="bdState == item.value ? 'active_' : ''">{{item.name}}</label>
       </div>
       <a-divider />
       <a-table :pagination="paginationB" :columns="columns" :dataSource="data">
@@ -11,15 +10,8 @@
           <a-radio @change="handleChange(record)" :checked="policyId == record.id"></a-radio>
         </template>
         <template slot="do" slot-scope="text, record">
-          <router-link :to="`/dashboard/baoquan/add/${record.id}`">
-            <a-button type="primary" ghost><a-icon type="plus" />增加</a-button>
-          </router-link>
-          <router-link class="mrg_l10" :to="`/dashboard/baoquan/sub/${record.id}`">
-            <a-button type="primary" ghost><a-icon type="plus" />减少</a-button>
-          </router-link>
-          <router-link :to="`/dashboard/baoquan/edit/${record.id}`">
-            <a-button class="mrg_l10" type="primary" ghost
-              ><a-icon type="edit" />编辑</a-button>
+          <router-link :to="`/dashboard/baoquan/list/${record.id}`">
+            <a-button type="primary" ghost><a-icon type="plus" />操作被保人</a-button>
           </router-link>
         </template>
       </a-table>
@@ -35,7 +27,7 @@
           <a-button @click="resetForm" class="mrg_l10" type="primary" ghost
             ><a-icon type="reset"></a-icon>重置</a-button
           >
-          <a-button class="mrg_l10" type="primary" ghost
+          <a-button disabled class="mrg_l10" type="primary" ghost
             ><a-icon type="download"></a-icon>下载</a-button
           >
         </div>
@@ -56,8 +48,8 @@
         <template slot="status" slot-scope="text">
           {{text | filterStatus}}
         </template>
-        <template slot="operation">
-          <router-link to="/dashboard/baoquan/edit">
+        <template slot="operation" slot-scope="text, record">
+          <router-link v-if="record.status == 1" :to="`/dashboard/baoquan/pd/list/${record.id}`">
             <a-button type="primary" ghost
               ><a-icon type="edit" />编辑</a-button>
           </router-link>
@@ -108,7 +100,7 @@ const columns = [
     key: "endDate"
   },
   {
-    title: "操作被保险人",
+    title: "操作",
     dataIndex: "do",
     key: "tab",
     scopedSlots: { customRender: "do" }
@@ -120,8 +112,8 @@ const data1 = [];
 const columns1 = [
   {
     title: "保全登记号",
-    dataIndex: "batchupdateNo",
-    key: "batchupdateNo"
+    dataIndex: "id",
+    key: "id"
   },
   {
     title: "保全类型",
@@ -137,7 +129,8 @@ const columns1 = [
   {
     title: "办理状态",
     dataIndex: "status",
-    key: "status"
+    key: "status",
+    scopedSlots: { customRender: 'status' }
   },
   {
     title: '保费',
@@ -189,6 +182,17 @@ export default {
         pageSize: 20,
         total: 1
       },
+      policyStatusLabels: [{
+        name: '全部',
+        value: ''
+      }, {
+        name: '保障中',
+        value: 'Y'
+      }, {
+        name: '已过期',
+        value: 'N'
+      }, ],
+      bdState: '',
       typeLabels: [{
         name: '增加',
         value: '1'
@@ -233,7 +237,7 @@ export default {
     filterType (val) {
       return val == 1 ? '加人' : val == 2 ? '修改' : '减人'
     },
-    fitlerStatus (val) {
+    filterStatus (val) {
       return val == 0 ? '失效' : val == 1 ? '待处理' :  val == 2 ? '审批中' : '已完成'
     }
   },
@@ -250,25 +254,34 @@ export default {
       this.selectType = ''
       this.selectStatus = ''
       this.selectRangeTime = []
+      this.handleSelectChange()
     },
     handleChange (record) {
       this.policyId = record.id
     },
-    handleSelectChange (item, key) {
+    handleSelectChange (item = {}, key) {
       if (item.value) {
         this[key] = item.value;
       }
+      if (key == 'bdState') {
+        this.fetchList(1)
+        return
+      }
       console.log('params -> ', item, key, this.selectTime);
-      let params = {
-        selectType: this.selectType,
-        selectStatus: this.selectStatus
-      };
+      const ifValue = function (obj, key, val) {
+        if (val && key) {
+          obj[key] = val
+        }
+      }
+      let params = {};
+      ifValue(params, 'type', this.selectType)
+      ifValue(params, 'status', this.selectStatus)
       this.selectTime = this.selectTime || this.selectRangeTime
       if (this.selectTime && this.selectTime.length > 0) {
         params = {
           ...params,
-          startTime: this.selectTime[0].format('YYYY-MM-DD'),
-          endTime: this.selectTime[1].format('YYYY-MM-DD'),
+          createDateStart: this.selectTime[0].format('YYYY-MM-DD'),
+          createDateEnd: this.selectTime[1].format('YYYY-MM-DD'),
         }
       }
       this.getBatchListByPolicyId(1, params);
@@ -284,7 +297,7 @@ export default {
         ...options
       }).then(res => res.data).then(data => {
           const {total, list} = data.content
-          this.data = list
+          this.data1 = list
           this.paginationB.total = total
       })
     },
@@ -304,7 +317,9 @@ export default {
             this.policyId = list[0].id
             this.getBatchListByPolicyId(1)
           } else {
+            // 清空子选择
             this.data1 = []
+            this.resetForm()
           }
         });
     },

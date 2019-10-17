@@ -43,8 +43,8 @@
       <div v-else>
         <a-checkbox-group v-model="checkedList" @change="handleGroupChange">
           <a-row>
-            <a-col v-for="item in list" :span="24">
-              <a-checkbox :value="item.id">{{item.electronicBatch}}{{item.batchupdateNo}}待发送邮件</a-checkbox> <router-link :to="`/dashboard/baoquan/edit/${item.id}`">修改</router-link>
+            <a-col :key="item.id" v-for="item in list" :span="24">
+              <a-checkbox :value="item.id">{{item.createDate}}{{item.type | filterType}}{{item.insurceCount}}人</a-checkbox> <router-link style="margin-left: 16px;" :to="`/dashboard/baoquan/pd/list/${item.id}`">点击查看或修改</router-link>
             </a-col>
           </a-row>
         </a-checkbox-group>
@@ -129,38 +129,56 @@ export default {
     return {
       current: ["2018"],
       searchText: "",
-      list: [{
-        "id": 1001,
-        "type": "批改类型1,加人,2,修改,3减人",
-        "changePremium": "保费变化",
-        "batchupdateNo": "批单号",
-        "payment": "支付方式",
-        "electronicBatch": "电子批单",
-        "status": "0失效,1待处理,2审批中,3已完成"
-      }],
+      list: [],
       checkedList: [],
       indeterminate: false,
       checkAll: false,
     };
+  },
+  filters: {
+    filterType (val) {
+      return val == 1 ? '加人' : val == 2 ? '变更' : '减人'
+    },
   },
   mounted () {
     this.fetchData()
   },
   methods: {
     submit () {
+      if (this.checkedList.length < 1) {
+        this.$message.info('请先选择代办事项')
+        return
+      }
       console.log(this.checkedList, 'submit -> ')
-      api.sendmail({
-        id: this.checkedList.join('')
-      }).then(res => res.data).then(data => {
-        
+      const max_request = 10
+      if (this.checkedList.length > max_request) {
+        this.$message.error(`一次批量最多选择${max_request}条发送`)
+        return
+      }
+      let allP = []
+      this.checkedList.forEach(val => {
+        let p = api.sendmail({
+          id: val
+        }).then(res => res.data).then(data => {
+        })
+        allP.push(p)
+      })
+      Promise.all(allP).finally(res => {
+        this.$message.success('发送完毕，准备更新数据...')
+        this.fetchData()
       })
     },
     handleGroupChange (checkedValues) {
       console.log('handleGroupChange -> ', checkedValues)
     },
     fetchData () {
-      api.getBatchListByStatus().then(res => res.data).then(data => {
-
+      api.getBatchListByStatus({
+        pageNum: 1,
+        pageSize: 100,
+        status: 1
+      }).then(res => res.data).then(data => {
+        const {list} = data.content
+        this.list = list
       })
     },
     emitEmpty() {

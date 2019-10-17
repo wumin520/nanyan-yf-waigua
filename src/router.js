@@ -7,13 +7,13 @@ import Login from "./views/Login.vue";
 import Staff from "./views/Staff.vue";
 import InsuranceContract from "./views/insurance/contract";
 import planInformation from "./views/insurance/planInformation";
-import BaoquanIndex from "./views/insurance/baoquan/index";
-import Baoquan from "./views/insurance/baoquan/list";
 import credentialsUpload from "./views/credentials/upload";
 import credentialsSearch from "./views/credentials/search";
-import accountInfo from "./views/accountInfo";
-import baoquanAdd from "./views/insurance/baoquan/add";
-import baoquanEdit from "./views/insurance/baoquan/edit";
+const BaoquanIndex = () => import(/* webpackChunkName: "baoquan-index" */ "./views/insurance/baoquan/index.vue");
+const Baoquan = () => import(/* webpackChunkName: "baoquan-list" */ "./views/insurance/baoquan/list.vue");
+const accountInfo = () => import(/* webpackChunkName: "accountInfo" */ "./views/accountInfo.vue");
+const baoquanAdd = () => import(/* webpackChunkName: "baoquan-add" */ "./views/insurance/baoquan/add.vue");
+const baoquanEdit = () => import(/* webpackChunkName: "baoquan-edit" */ "./views/insurance/baoquan/edit.vue");
 
 Vue.use(Router);
 
@@ -87,6 +87,20 @@ export default new Router({
             meta: {
               breadcrumbName: "保全管理"
             },
+          }, {
+            path: "list/:id",
+            name: "baoquan-list",
+            component: baoquanEdit,
+            meta: {
+              breadcrumbName: "编辑被保险人"
+            }
+          }, {
+            path: "pd/list/:id",
+            name: "baoquan-pd-list",
+            component: baoquanEdit,
+            meta: {
+              breadcrumbName: "编辑被保险人"
+            }
           }, { // 保单加减人
             path: "add/:id",
             name: "baoquan-add",
@@ -104,7 +118,7 @@ export default new Router({
           }, {
             path: "edit/:id",
             name: "baoquan-edit",
-            component: baoquanEdit,
+            component: baoquanAdd,
             meta: {
               breadcrumbName: "编辑被保险人"
             }

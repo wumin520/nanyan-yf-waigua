@@ -148,13 +148,13 @@ api.updateUser = function(data) {
  * policyId: ''
  */
 api.getBatchListByPolicyId = function(data) {
-  return instance.post('/plug/getBatchListByPolicyId', data)
+  return instance.post(`/plug/getBatchListByPolicyId?${qs.stringify(data)}`, data)
 };
 /** 待办事项
  * /plug/getBatchListByStatus?pageNum=1&pageSize=5
  */
 api.getBatchListByStatus = function(data) {
-  return instance.post('/plug/getBatchListByStatus', data);
+  return instance.post(`/plug/getBatchListByStatus?${qs.stringify(data)}`, data);
 };
 /**
  * 批单详情
@@ -180,6 +180,15 @@ api.sendmail = function(data) {
  */
 api.doBatchupdate = function(data) {
   return instance.post("/plug/doBatchupdate", data);
+};
+// /plug/updateBatchupdate
+
+api.updateBatchupdate = function(data) {
+  return instance.post('/plug/updateBatchupdate', data);
+};
+
+api.getInsurceListBypolicyId = function(data) {
+  return instance.post(`/plug/getInsurceListBypolicyId?${qs.stringify(data)}`, data)
 };
 
 // 批量增加 /plug/getVolumeIncrease

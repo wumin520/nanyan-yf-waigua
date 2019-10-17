@@ -186,9 +186,6 @@ export default {
     left: 0;
     right: 0;
     background: transparent;
-    padding: 12px 0 0 43px;
-    height: 60px;
-    // margin-bottom: 60px;
 
     .logo_ {
       width: 121px;
@@ -204,7 +201,7 @@ export default {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .navbar_ {
-    padding-bottom: 12px;
+    padding: 19px 0;
   }
   .content_ {
     margin-top: 16%;
