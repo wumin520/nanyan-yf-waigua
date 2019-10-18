@@ -10,9 +10,23 @@
           <a-radio @change="handleChange(record)" :checked="policyId == record.id"></a-radio>
         </template>
         <template slot="do" slot-scope="text, record">
-          <router-link :to="`/dashboard/baoquan/list/${record.id}`">
-            <a-button type="primary" ghost><a-icon type="plus" />操作被保人</a-button>
-          </router-link>
+          <a-row gutter="8">
+            <a-col :span="8">
+              <router-link :to="`/dashboard/baoquan/sub/${record.id}`">
+                <a-button type="primary" ghost><a-icon type="delete" />减人</a-button>
+              </router-link>
+            </a-col>
+            <a-col :span="8">
+              <router-link :to="`/dashboard/baoquan/add/${record.id}`">
+                <a-button type="primary" ghost><a-icon type="plus" />加人</a-button>
+              </router-link>
+            </a-col>
+            <a-col :span="8">
+              <router-link :to="`/dashboard/baoquan/list/${record.id}`">
+                <a-button type="primary" ghost><a-icon type="edit" />编辑</a-button>
+              </router-link>
+            </a-col>
+          </a-row>
         </template>
       </a-table>
     </a-card>
@@ -103,7 +117,7 @@ const columns = [
     key: "endDate"
   },
   {
-    title: "操作",
+    title: "操作被保人",
     dataIndex: "do",
     key: "tab",
     scopedSlots: { customRender: "do" }
