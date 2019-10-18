@@ -5,7 +5,7 @@
         <a-form-item v-bind="formItemLayout" label="公司名称">
           <div>{{formInfo.companyName}}</div>
         </a-form-item>
-        <a-form-item v-bind="formItemLayout" label="用户名">
+        <a-form-item style="width:85%;" v-bind="formItemLayout" label="用户名">
           <a-input v-if="editable" v-decorator="[
             'userName',
             {
@@ -83,6 +83,10 @@
       float: right;
     }
   }
+}
+
+.form_user{
+  width:100px;
 }
 </style>
 <script>

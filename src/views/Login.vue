@@ -118,7 +118,7 @@
         <a-divider type="vertical" />
       </div>
       <div class="company_info_">
-        宇泰信息技术有限公司 © 2019-2029 yutaieb.com All Rights Reserved
+        宇泰员福 © 2019-2029 yutaieb.com All Rights Reserved
         京ICP备16001338号-6
       </div>
     </div>
@@ -186,12 +186,18 @@ export default {
     left: 0;
     right: 0;
     background: transparent;
+    padding: 18px 0 0 43px;
+    height: 60px;
+    // margin-bottom: 60px;
 
     .logo_ {
       width: 121px;
       height: auto;
       display: inline-block;
     }
+  }
+  .btn_{
+    border-radius:0;
   }
   .btn_home_ {
     width: 117px;
@@ -201,7 +207,7 @@ export default {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .navbar_ {
-    padding: 19px 0;
+    padding-bottom: 18px;
   }
   .content_ {
     margin-top: 16%;

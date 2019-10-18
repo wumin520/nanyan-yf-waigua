@@ -292,7 +292,7 @@
     <div class="footer_">
       <div class="w1024">
         <a-row class="pre_">
-          <a-col :span="12">
+          <a-col class="left_col" :span="12">
             <div class="left_">
               <div class="mrg_b27"></div>
               <div class="mrg_b23">
@@ -314,7 +314,7 @@
         </a-row>
       </div>
       <div class="company_info_">
-        宇泰信息技术有限公司 © 2019-2029 yutaieb.com All Rights Reserved
+        宇泰员福 © 2019-2029 yutaieb.com All Rights Reserved
         京ICP备16001338号-6
       </div>
     </div>
@@ -322,6 +322,9 @@
 </template>
 <style lang="scss" scoped>
 @import "@/sass/common.scss";
+.anticon{
+  margin-right: 10px;
+}
 .home_ {
   min-width: 1200px;
 }
@@ -483,8 +486,9 @@ img {
     .right_ {
       display: inline-block;
       width: 554px;
-      padding: 50px 36px;
+      padding: 20px 36px;
       text-align: left;
+      box-shadow: 0 0 2px #ccc;
       .item_title_ {
         font-size: 19px;
         font-weight: bold;
@@ -516,13 +520,16 @@ img {
     }
   }
 }
+.left_col{
+      border-right: 1px solid rgba(251, 251, 251, 1);
+
+}
 .footer_ {
   background: rgba(42, 53, 69, 1);
   .pre_ {
     height: 187px;
-    padding-top: 39px;
+    padding-top: 28px;
     .left_ {
-      border-right: 1px solid rgba(251, 251, 251, 1);
       height: 112px;
       font-size: 16px;
       font-family: SourceHanSansCN-Light;
