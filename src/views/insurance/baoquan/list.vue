@@ -48,6 +48,9 @@
         <template slot="status" slot-scope="text">
           {{text | filterStatus}}
         </template>
+        <template slot="electronicBatch" slot-scope="text">
+          <a v-if="text" target="_blank" :href="text">点击下载</a>
+        </template>
         <template slot="operation" slot-scope="text, record">
           <router-link v-if="record.status == 1" :to="`/dashboard/baoquan/pd/list/${record.id}`">
             <a-button type="primary" ghost
@@ -140,7 +143,8 @@ const columns1 = [
   {
     title: '保全批单',
     dataIndex: 'electronicBatch',
-    key: 'electronicBatch'
+    key: 'electronicBatch',
+    scopedSlots: { customRender: 'electronicBatch' }
   },
   {
     title: '操作',

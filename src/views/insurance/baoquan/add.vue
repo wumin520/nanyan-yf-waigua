@@ -175,9 +175,10 @@
               name="file"
               :multiple="true"
               :action="actionUrl"
+              :fileList="fileList"
               @change="handleChange"
             >
-              <a-button class="mrg_t60"> <a-icon type="upload" /> 点击上传 </a-button>
+              <a-button class="mrg_t20"> <a-icon type="upload" /> 点击上传 </a-button>
             </a-upload>
           </template>
         </a-step>
@@ -230,6 +231,9 @@
   }
   .mrg_t60 {
     margin-top: 30px;
+  }
+  .mrg_t20 {
+    margin-top: 20px;
   }
   .ant-advanced-search-form .ant-form-item {
     display: flex;
@@ -384,10 +388,15 @@ export default {
       }
       if (this.fileList1.length > 0) {
         params.fileList = this.fileList1.map(val => {
+          if (val.response) {
+            return {
+              name: val.name,
+              type: val.type,
+              url: val.response.url
+            }
+          }
           return {
-            name: val.name,
-            type: val.type,
-            url: val.response.url
+            ...val
           }
         })
       }
@@ -425,6 +434,12 @@ export default {
     },
     handleChange(info) {
       console.log('handleChange -> ', info)
+      let fileList = [...info.fileList];
+      // 1. Limit the number of uploaded files
+      //    Only to show two recent uploaded files, and old ones will be replaced by the new
+      fileList = fileList.slice(-1);
+      this.fileList = fileList;
+      console.log(this.fileList, '----------1---------')
       if (info.file.status !== 'uploading') {
         console.log(info.file, info.fileList);
       }
